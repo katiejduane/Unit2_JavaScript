@@ -5,10 +5,54 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Dragon Game!</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+    <style>
+        body {
+            text-align: center;
+            font-family:'Courier New', Courier, monospace
+        }
+
+        .dragon-img {
+            width: 400px;
+        }
+
+        #instructions {
+            font-family:'Courier New', Courier, monospace;
+            width: 600px;
+            margin: 0 auto;
+        }
+
+        #warning {
+            font-family: 'Courier New', Courier, monospace;
+            width: 400px;
+            margin: 0 auto;
+            color: red;
+            font-weight: bold;
+        }
+
+        .button {
+            background-color: green;
+            color: white;
+            width: 100px;
+            height: 50px;
+            border-radius: 15px;
+            margin: 5px;
+            font-size: medium;
+            font-family: 'Courier New', Courier, monospace;
+        }
+    </style>
 </head>
 <body>
     <h2>WELCOME TO THE DRAGON GAME</h2>
+
+    <div id="dragonPic"></div>
+
+    <div id="instructions">INSTRUCTIONS: </div>
+    <div id="warning"></div>
+
+    <button class="button" id="fleeButton">FLEEEE!</button>
+    <button class="button" id="fightButton">FIIIGHT!</button>
+
+
     <script src="dragon_game.js"></script>
 </body>
 </html>

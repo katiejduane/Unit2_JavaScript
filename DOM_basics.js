@@ -1,26 +1,26 @@
 // DOM Manipulation Basics! DOM manipulation allows JS to add  behavior/interactivity to your website!
 
 console.log(document);
-console.dir(document);
+// console.dir(document);
 
-var simpleDoc = {
-    children: [
-        {
-            tag: "<HTML>",
-            children: [
-                {
-                    tag: "<head>"
-                },
-                {
-                    tag: "body"
-                }
+// var simpleDoc = {
+//     children: [
+//         {
+//             tag: "<HTML>",
+//             children: [
+//                 {
+//                     tag: "<head>"
+//                 },
+//                 {
+//                     tag: "body"
+//                 }
 
-            ]
-        }
-    ]
-}
+//             ]
+//         }
+//     ]
+// }
 
-simpleDoc.children[0].children[1]
+// simpleDoc.children[0].children[1]
 
 // SAVIOR: "get element by ID" or "get elementS by class"
 // *** it's preferable to use IDs in your html if you want to access it via the DOM because 
@@ -50,3 +50,14 @@ prompt("I am a prompt. what are you?")
 
 varNum = +prompt("Enter a number: ")
 // the + sign before the prompt will convert the response to a number data type. parseInt() and Number() will too, but + is way shorter!
+
+// BUTTON basics
+var button = document.getElementById('myButton');
+
+button.addEventListener("click", function () {
+    document.body.innerHTML += "hello"
+});
+
+function chooseFightOrFlight() {
+    //can also ref a global function in the click listener, but only bring in variable name, not the ()
+}
