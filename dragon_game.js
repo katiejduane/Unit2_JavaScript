@@ -16,45 +16,38 @@ var flee = document.getElementById("fleeButton");
 var dicePic = document.getElementById("diceRoll");
 var playButton = document.getElementById("playAgain");
 
+dicePic.classList.add("hidden")
+
 //GAME FUNCTIONS!
 
 function fleeOnce() {
     document.getElementById("instructions").innerHTML = "You've chosen to flee! While this makes you a heap of cowardice, the dragon got tired chasing you and passed out. So you can play again!"
     document.getElementById("warning").innerHTML = "What will you do this time!?"
-    dragon.innerHTML = `
-    <img src="./dragon-assets/dragonsleeping.png" class="dragon-img">`
+    dragon.innerHTML = `<img src="./dragon-assets/dragonsleeping.png" class="dragon-img">`
 }
 
 function fleeTwice() {
     document.getElementById("instructions").innerHTML = "Flee AGAIN!? This has annoyed the dragon. He awakes and incinerates you with one breath!"
-    document.getElementById("warning").innerHTML = "GAME OVER!!!!!!"
-    dragon.innerHTML = `
-<img src="./dragon-assets/dragon.png" class="dragon-img"> `
-
+    document.getElementById("warning").innerHTML = "Game over!"
+    dragon.innerHTML = `<img src="./dragon-assets/dragon.png" class="dragon-img"> `
     gameOver()
 }
 
-// function fightOnce() {
-//     document.getElementById("instructions").innerHTML = "Dice roll!"
-//     document.getElementById("warning").innerHTML = "If you roll less than three, you burn to death!"
-// }
-
 function diceRoll() {
+    dicePic.classList.remove("hidden");
     document.getElementById("instructions").innerHTML = "Dice roll!"
-    document.getElementById("warning").innerHTML = "If you roll less than three, you burn to death!"
+    document.getElementById("warning").innerHTML = "If you roll less than three... incineration!!"
     var randomNumber = Math.ceil(Math.random(2, 6) * 6);
     dicePic.innerHTML = `<img src="./dragon-assets/d${randomNumber}.gif">`;
     console.log(randomNumber)
     var score = randomNumber
     if (score >= 3) {
         document.getElementById("instructions").innerHTML = "Your roll is greater than three! What would you like to do now? Fight or flee?"
-        document.getElementById("warning").innerHTML = "" ;
     } else {
         document.getElementById("instructions").innerHTML = "Your roll is LESS than three! BURNT TO A CRISP!"
         document.getElementById("warning").innerHTML = "GAME OVER!";
         gameOver()
-        // playAgain()
-
+    dicePic.classList.add("hidden")
     }
     }
 
@@ -74,11 +67,11 @@ function gameOver() {
 
 var fleed = false;
 
+dragon.innerHTML += `
+    <img src="./dragon-assets/dragon.png" class="dragon-img">`
 
 alert("Welcome to the dragon game. It's pretty easy. It merely requires that you read and click your mouse. Do you think you can handle that?")
 
-dragon.innerHTML += `
-    <img src="./dragon-assets/dragon.png" class="dragon-img">`
 
 document.getElementById("instructions").innerHTML = "You must try to beat the dragon. FYI: He's super sleepy, but loves to play fetch... Do you want to fight or flee?"
 document.getElementById("warning").innerHTML += " If you choose to fight, you must roll a 3 or higher; otherwise you'll be burnt to a crisp!"
@@ -92,7 +85,6 @@ flee.addEventListener("click", function() {
         fleeTwice();
     }
 })
-// flee.addEventListener("click", fleeTwice)
 fight.addEventListener("click", diceRoll)
 playButton.addEventListener("click", playAgain)
 
