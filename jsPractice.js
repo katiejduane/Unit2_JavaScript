@@ -43,7 +43,7 @@ function numOfDays(monthNum, yearNum) {
 
 numOfDays(monthNum, yearNum);
 
-var sadface = "😔 " 
+var sadFace = "😔 " 
 // to get an emohi, hold: command + ctrl + space_bar
 
  
@@ -58,21 +58,32 @@ var sadface = "😔 "
 
 function tipCalc(service, total) {
     var tipAmount;
+    var newTotal;
     if (service == "good") {
         tipAmount = Math.floor((total * 0.20) * 100 ) / 100;
-        console.log("Tip: $" + tipAmount);
     } else if (service == "fair") {
         tipAmount = total * 0.15;
-        console.log("Tip: $" + tipAmount);
     } else if (service == "bad") {
-        tipAmount = total * 0.10;
-        console.log("Tip: $" + tipAmount);
+        tipAmount = total * 0.10; 
     } else {
         console.log("Enter service and total!");
+        return;
     }
-}
+}   newTotal = tipAmount + total;
+    newTotal = newTotal * 100;
+    newTotal = Math.ceil(newTotal);
+    newTotal = newTotal / 100;
+    console.log("$" + newTotal);
 
 tipCalc("good", 21.89);
 
+// a much more CONCISE way of thinking about this...
+var tipAmounts = {
+    poor: 0.1,
+    fair: 0.15,
+    good: 0.2
+}
+
+console.log((total * tipAmounts[service]) + total)
 
 //     Extra: Add to "Tip Calculator"...you are also given the number of people to divide the total into.Print the amount for each person to pay.
