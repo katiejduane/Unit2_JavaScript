@@ -39,6 +39,15 @@
             font-size: medium;
             font-family: 'Courier New', Courier, monospace;
         }
+
+        .hidden {
+            display: none;
+        }
+
+        .playAgain {
+            display: none;
+        }
+
     </style>
 </head>
 <body>
@@ -46,11 +55,17 @@
 
     <div id="dragonPic"></div>
 
-    <div id="instructions">INSTRUCTIONS: </div>
+    <div id="diceRoll"></div>
+
+    <div id="instructions"></div>
     <div id="warning"></div>
 
     <button class="button" id="fleeButton">FLEEEE!</button>
     <button class="button" id="fightButton">FIIIGHT!</button>
+    <!-- <br>
+    <br>
+    <br> -->
+    <div><button class="button" id="playAgain">Play Again!</button></div>
 
 
     <script src="dragon_game.js"></script>

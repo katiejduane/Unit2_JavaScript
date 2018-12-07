@@ -2,7 +2,6 @@
 console.log(document);
 console.dir(document);
 
-alert("Welcome to the dragon game. It's pretty easy. It merely requires that you read and click your mouse. Do you think you can handle that?")
 
 // 1. Put the dragon on the screen.
 // 2. Give the user instructions that they must fight or flee and a button for each.
@@ -10,18 +9,14 @@ alert("Welcome to the dragon game. It's pretty easy. It merely requires that you
 // 4. If they flee, change the image of the dragon to the coward fleeing and mock the user for cowardice!
 // 5. If they choose to fight, they must roll the dice.Update the dice to reflect their roll.Display on the screen what they rolled As well as the outcome.
 
+// GAME VARIABLES
 var dragon = document.getElementById("dragonPic");
-console.log(dragon);
+var fight = document.getElementById("fightButton");
+var flee = document.getElementById("fleeButton");
+var dicePic = document.getElementById("diceRoll");
+var playButton = document.getElementById("playAgain");
 
-dragon.innerHTML += `
-    <img src="./dragon-assets/dragon.png" class="dragon-img">
-`
-
-document.getElementById("instructions").innerHTML = "You must try to beat the dragon. FYI: He's super sleepy, but loves to play fetch... Do you want to fight or flee?"
-var fight = document.getElementById("fightButton")
-var flee = document.getElementById("fleeButton")
-
-document.getElementById("warning").innerHTML += " If you choose to fight, you must roll a 9 or higher; otherwise you'll be burnt to a crisp!"
+//GAME FUNCTIONS!
 
 function fleeOnce() {
     document.getElementById("instructions").innerHTML = "You've chosen to flee! While this makes you a heap of cowardice, the dragon got tired chasing you and passed out. So you can play again!"
@@ -35,18 +30,71 @@ function fleeTwice() {
     document.getElementById("warning").innerHTML = "GAME OVER!!!!!!"
     dragon.innerHTML = `
 <img src="./dragon-assets/dragon.png" class="dragon-img"> `
+
+    gameOver()
 }
 
-gameOn = true;
+// function fightOnce() {
+//     document.getElementById("instructions").innerHTML = "Dice roll!"
+//     document.getElementById("warning").innerHTML = "If you roll less than three, you burn to death!"
+// }
 
-while (gameOn == true) {
+function diceRoll() {
+    document.getElementById("instructions").innerHTML = "Dice roll!"
+    document.getElementById("warning").innerHTML = "If you roll less than three, you burn to death!"
+    var randomNumber = Math.ceil(Math.random(2, 6) * 6);
+    dicePic.innerHTML = `<img src="./dragon-assets/d${randomNumber}.gif">`;
+    console.log(randomNumber)
+    var score = randomNumber
+    if (score >= 3) {
+        document.getElementById("instructions").innerHTML = "Your roll is greater than three! What would you like to do now? Fight or flee?"
+        document.getElementById("warning").innerHTML = "" ;
+    } else {
+        document.getElementById("instructions").innerHTML = "Your roll is LESS than three! BURNT TO A CRISP!"
+        document.getElementById("warning").innerHTML = "GAME OVER!";
+        gameOver()
+        // playAgain()
 
+    }
+    }
+
+function playAgain() {
+    fight.classList.remove("hidden");
+    flee.classList.remove("hidden");
+    fleed = false;
+    console.log("working")
 }
 
-flee.addEventListener("click", fleeOnce)
+function gameOver() {
+    fight.classList.add("hidden")
+    flee.classList.add("hidden")
+}
+
+// GAME PLAY!
+
+var fleed = false;
 
 
-flee.addEventListener("click", fleeTwice)
+alert("Welcome to the dragon game. It's pretty easy. It merely requires that you read and click your mouse. Do you think you can handle that?")
+
+dragon.innerHTML += `
+    <img src="./dragon-assets/dragon.png" class="dragon-img">`
+
+document.getElementById("instructions").innerHTML = "You must try to beat the dragon. FYI: He's super sleepy, but loves to play fetch... Do you want to fight or flee?"
+document.getElementById("warning").innerHTML += " If you choose to fight, you must roll a 3 or higher; otherwise you'll be burnt to a crisp!"
+
+// Game function calls...
+flee.addEventListener("click", function() {
+    if (!fleed) {
+        fleeOnce();
+        fleed = true;
+    } else {
+        fleeTwice();
+    }
+})
+// flee.addEventListener("click", fleeTwice)
+fight.addEventListener("click", diceRoll)
+playButton.addEventListener("click", playAgain)
 
 
 // Bonus
