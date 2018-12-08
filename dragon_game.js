@@ -19,7 +19,6 @@ var playButton = document.getElementById("playAgain");
 dicePic.classList.add("hidden")
 
 //GAME FUNCTIONS!
-
 function fleeOnce() {
     document.getElementById("instructions").innerHTML = "You've chosen to flee! While this makes you a heap of cowardice, the dragon got tired chasing you and passed out. So you can play again!"
     document.getElementById("warning").innerHTML = "What will you do this time!?"
@@ -32,8 +31,10 @@ function fleeTwice() {
     dragon.innerHTML = `<img src="./dragon-assets/dragon.png" class="dragon-img"> `
     gameOver()
 }
+// ^need to change the image back from the sleepig dragon to the regular dragon! 
 
 function diceRoll() {
+    dragon.innerHTML = `<img src="./dragon-assets/dragon.png" class="dragon-img"> `
     dicePic.classList.remove("hidden");
     document.getElementById("instructions").innerHTML = "Dice roll!"
     document.getElementById("warning").innerHTML = "If you roll less than three... incineration!!"
@@ -61,10 +62,10 @@ function playAgain() {
 function gameOver() {
     fight.classList.add("hidden")
     flee.classList.add("hidden")
+    fleed = false;
 }
 
 // GAME PLAY!
-
 var fleed = false;
 
 dragon.innerHTML += `
