@@ -108,7 +108,6 @@ function commonYear(array) {
     return mostCommonYear;
 }
 
-
 // var arr1 = [3, 'a', 'a', 'a', 2, 3, 'a', 3, 'a', 2, 4, 9, 3];
 // var mf = 1;
 // var m = 0;
@@ -126,29 +125,21 @@ function commonYear(array) {
 // }
 // console.log(item + " ( " + mf + " times ) ");
 
-var birthYears2 = [1979, 1984, 1991, 1983, 1991, 1984, 1989, 1990, 1988, 1986, 1984];
+//caching length in len variable
+// for (var i = 0, len = cats.length; i < len; i++) {
+//     var word = cats[i];
 
-// function mostCommonYear(list) {
-//     var mostCommon;
-//     var yearCount = 1
-//     var yearCounter = 0
-//     for (var i = 0; i < list.length; i++) {
-//         for (var j = 0; j < list.length; j++){
-//             if (list[i] == list[j]) {
-//                 yearCounter++;
-//             if (yearCounter < yearCount) {
-//                 yearCount = yearCounter;
-//                 mostCommon = list[i]
-//             }
-//         }
+//     if (counts[word] === undefined) { //if count[word] doesn't exist
+//         counts[word] = 1;    //set count[word] value to 1
+//     } else {                  //if exists
+//         counts[word] = counts[word] + 1; //increment existing value
 //     }
-//     yearCount = 0;  
-
+//     if (counts[word] > compare) {  //counts[word] > 0(first time)
+//         compare = counts[word];   //set compare to counts[word]
+//         mostFrequent = cats[i];  //set mostFrequent value
+//     }
 // }
-//     console.log(mostCommon) 
-// }
 
-// mostCommonYear(birthYears2)
 
 // // Given a string “This is a random string”, write a function that returns a count of each character in the string
 
