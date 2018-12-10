@@ -19,20 +19,11 @@ function updateTimer() {
     document.querySelector('.minutes').innerHTML = minutes;
     document.querySelector('.seconds').innerHTML = seconds;
 
-    if(seconds === 0) {
+    if(seconds >50 && christmas == true) {
         // update the DOM to say "Hooray! Another minute closer to christmas!"
         document.querySelector('.message').innerHTML = "Rickyyy!!! It's one minute closer to Christmas!"
-    } else if (seconds >= 50) {
-        document.querySelector('.message').innerHTML = "Rickyyy!!! It's one minute closer to Christmas!"
-    } else {
-        document.querySelector('.message').innerHTML = ""
-    }
-
-    if (seconds == 0 && christmas == false)
-    {
-        document.querySelector('.message').innerHTML = "GRADUATION!!!!!"
-    } else if (seconds >= 50) {
-        document.querySelector('.message').innerHTML = "GRADUATION!!!!!"
+    } else if (seconds >= 50 && christmas == false) {
+        document.querySelector('.message').innerHTML = "You ready girl?!?"
     } else {
         document.querySelector('.message').innerHTML = ""
     }
@@ -53,6 +44,7 @@ var timeStamp2 = endDate2.getTime();
 
 
 var gradButton = document.getElementById("grad-button");
+
 function Countdown() {
     if (christmas == true) {
         document.querySelector('body').style.background = "url('https://y.yarn.co/a657c98d-edb5-414f-b562-2c7a8484b18f_screenshot.jpg')"
