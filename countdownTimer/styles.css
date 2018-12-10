@@ -1,0 +1,52 @@
+body {
+    /* background-color: rgb(164, 164, 235); */
+    background: url('http://sfindie.com/wp-content/uploads/2018/08/better-off.jpg');
+    height: 100vh;
+    text-align: center; 
+}
+
+h1 {
+    font-family: 'Lobster', cursive;
+    font-size: 44pt;
+    margin: 40px 0px 0px;
+    color: rgb(5, 187, 75);
+}
+
+.time-unit, .time-unit span {
+    font-family: 'Quicksand', sans-serif;
+    display: inline-block;
+    padding: 10px;
+    background-color: white;
+    border-radius: 5px;
+    border: 1px solid rgb(5, 187, 75);
+    color: red;
+}
+
+.message {
+    margin: 10px;
+    display: block;
+    font-family: 'Lobster', cursive;
+    font-size: 24pt;
+    color: rgb(5, 187, 75);
+    height: 50px;
+}
+
+#grad-header {
+    font-size: 14pt;
+    font-family: 'Quicksand', sans-serif;
+    color: white;
+    font-weight: bold;
+    /* margin-top: 160px; */
+}
+
+
+button {
+    height: 60px;
+    width: 180px;
+    border-radius: 10px;
+    background-color: red;
+    color: white;
+    font-size: 18pt;
+    font-family: 'Quicksand', sans-serif;
+    cursor: pointer;
+}

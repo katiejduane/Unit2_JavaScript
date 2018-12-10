@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Dragon Game</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+
+
+    </style>
+
+    <script>
+    function roll(){
+        var rand1 = Math.ceil(Math.random() * 6);
+        var rand2 = Math.ceil(Math.random() * 6);
+        var dice = document.getElementById('dice')
+        // var dice = document.querySelector('#dice') --querySelector looks for CSS rules, and will return only ONE THING (the first thing)
+        var die1 = dice.children[0];
+        var die2 = dice.children[1];
+        die1.src = `dragon-assets/d${rand1}.gif`
+        die2.src = `dragon-assets/d${rand2}.gif`
+        if (rand1 + rand2 > 8) {
+            console.log("You won!");
+            var dragonDiv = document.getElementById('dragon')
+            dragonDiv.children[0].src="https://www.worldanvil.com/uploads/images/79206006de3cd03c3cd842609950db55.jpg"
+            dragonDiv.children[0].style.height = "465px"
+        } else {
+            console.log("You lost!")
+
+        }
+
+    }
+
+    </script>
+
+</head>
+<body>
+    
+    <div id="game-wrapper">
+        <div id="dragon">
+            <img src="./dragon-assets/dragon.png"/>
+        </div>
+        <div id="message">
+            <p>You have encountered the terrible dragon. ROll to fight. 
+            8 or higher defeats it, 7 or lower and you're toast.</p>
+        </div>
+        <div id ="dice">
+            <img src = "./dragon-assets/d1.gif"/>
+            <img src= "./dragon-assets/d1.gif"/>
+        </div>
+
+        <div id="roll">
+            <button is="roll-button" onclick="roll()">Fight!</button>
+        </div>
+
+
+    </div>
+
+    <script src="dragon.js"></script>
+</body>
+</html>

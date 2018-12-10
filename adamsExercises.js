@@ -108,38 +108,6 @@ function commonYear(array) {
     return mostCommonYear;
 }
 
-// var arr1 = [3, 'a', 'a', 'a', 2, 3, 'a', 3, 'a', 2, 4, 9, 3];
-// var mf = 1;
-// var m = 0;
-// var item;
-// for (var i = 0; i < arr1.length; i++) {
-//     for (var j = i; j < arr1.length; j++) {
-//         if (arr1[i] == arr1[j])
-//             m++;
-//         if (mf < m) {
-//             mf = m;
-//             item = arr1[i];
-//         }
-//     }
-//     m = 0;
-// }
-// console.log(item + " ( " + mf + " times ) ");
-
-//caching length in len variable
-// for (var i = 0, len = cats.length; i < len; i++) {
-//     var word = cats[i];
-
-//     if (counts[word] === undefined) { //if count[word] doesn't exist
-//         counts[word] = 1;    //set count[word] value to 1
-//     } else {                  //if exists
-//         counts[word] = counts[word] + 1; //increment existing value
-//     }
-//     if (counts[word] > compare) {  //counts[word] > 0(first time)
-//         compare = counts[word];   //set compare to counts[word]
-//         mostFrequent = cats[i];  //set mostFrequent value
-//     }
-// }
-
 
 // // Given a string “This is a random string”, write a function that returns a count of each character in the string
 
