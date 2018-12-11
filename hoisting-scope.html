@@ -1,0 +1,94 @@
+<!-- Scope: Determines what can see a variable.
+
+--GLOBAL Scope: has no parent, anyone can see it anywhere, and anyone can change it anywhere. Awesome for small programs.
+---Dangerous when your program gets big. If it belongs to the window, or is defined outside of all functions, it's global.
+---In Python, globals are variables that are alllll the way to the left.
+
+--LOCAL Scope: live INSIDE of FUNCTIONS and are visible and changeable only within and to that function and its child functions. -->
+
+
+<script>
+    // // this isn't inside of a function, so it's global:
+    // var iAmAGlobal = 1;
+    // console.log(iAmAGlobal);
+
+    // // despite its horrible name, this variable isn't global, because it's inside of a function. 
+    // // Nobody outside of this function can see or do anything with this variable!
+    // function checkScope(){
+    //     // var iAmAGlobal = 2;
+    //     iAmAGlobal++;
+    //     console.log(iAmAGlobal);
+
+    //     // *** UNLESS YOU HAVE A VERY GOOD REASON TO, don't make a varibale inside of a function that you already
+    //     // have a global function (name) for ***
+    // }
+
+    // checkScope();
+    // console.log(iAmAGlobal);
+
+    // var a = 4;
+    // function child() {
+    //     var b = 5;
+    //     console.log(a) //global
+    //     console.log(b) //local
+    //     for(var i = 0; i < 10; i++) {
+    //         a++
+    //     }
+    //     function grandChild() {
+    //         console.log(`I am a grandchild. I can see and change
+    //         mystuff, my parents' stuff and their parents' stuff `)
+    //         a++
+    //         b++
+    //     }
+    //     grandChild()
+    //     console.log(a);
+    //     console.log(b);
+    // }
+
+    // child();
+    //  -->
+
+    // // STATES OF A VARIABLE:
+    // // --undeclared: no var X anywhere (js doesn't know it exists)
+    // // --declared: javascript knows it exists
+    // // --init/assigned: not only does it exist, it has a value
+
+
+// HOISTING!
+
+// --Kinda unique to JS. ANytime you have the word 'var'. JS will take the 
+// var and put it at the top of the function/global, whether or not you want it to!
+// 'Let' and 'const' don't hoist!
+
+// var q = 1;
+// function p() {
+//     console.log(q)
+//     var q = 3;
+//     console.log(q)
+// }
+// p();
+
+// In addition to 'var', JS got a facelift in 2015 that added 'let' and 'const' for declaring variables.
+
+// let + const = no more var
+
+// let js a block-level variable. It lives for as long as the {} it's inside of do.
+
+// ex-->
+// for (var i = 0; i < 10; i++) {
+// }
+// console.log(i)
+// // ^^ HOISTING will fix this because of "var"
+
+// for (let j = 0; j <10; j++) {
+// }
+// console.log(j) 
+// ^^LET does not HOIST, so out side of the brackets, 'j' is unknown, and you'll get areference error!
+// so print it withIN the {}
+
+// for (const k = 0; k < 10; k++) { 
+// }
+//this will throw a type error because CONST is unchangeable, and a for loop changes a variable!
+
+
+</script>
