@@ -23,6 +23,11 @@ const winningCombos = [
     ["A3", "B2", "C1"],
 ]
 
+let resetButton = document.querySelector('#reset-button')
+
+let gameOn = true;
+resetButton.className += " hidden"
+
 //squares is an 'array' with 9 objects in it, each element is an HTML button element
 const squares = document.getElementsByClassName('square');
 // const squares = document.getElementsByTagName('square'); this will do the same thing since we are only looking for the buttons!
@@ -35,27 +40,30 @@ for (let i = 0; i < squares.length; i++) {
         // console.log(event) will show you what event and where (x/y) that it happened
         // console.log(this) will show you WHAT (this thing) that was clicked on (liek python's 'self')
         // console.dir(this) 
-    if (this.innerHTML === "-") {
-        if (whosTurn === 1) {
-            this.innerHTML = "X"; // update the DOM
-            whosTurn = 2; // update JS
-            document.getElementById('message').innerHTML = "It's O's turn!" //update the DOM again
-            player1Squares.push(this.id)
-            checkWin(player1Squares,1)
+    if(gameOn) {
+        if (this.innerHTML === "-") {
+            if (whosTurn === 1) {
+                this.innerHTML = "X"; // update the DOM
+                whosTurn = 2; // update JS
+                document.getElementById('message').innerHTML = "It's O's turn!" //update the DOM again
+                player1Squares.push(this.id)
+                checkWin(player1Squares,1)
+            } else {
+                this.innerHTML = "O";
+                whosTurn = 1;
+                document.getElementById('message').innerHTML = "It's X's turn!"
+                player2Squares.push(this.id)
+                checkWin(player2Squares, 2)
+            }
         } else {
-            this.innerHTML = "O";
-            whosTurn = 1;
-            document.getElementById('message').innerHTML = "It's X's turn!"
-            player2Squares.push(this.id)
-            checkWin(player2Squares, 2)
+            document.getElementById('message').innerHTML = "Sorry, that square is taken!"
+        } 
         }
-    } else {
-        document.getElementById('message').innerHTML = "Sorry, that square is taken!"
+        console.log(player1Squares)
+        console.log(player2Squares)
+        })
     }
-    console.log(player1Squares)
-    console.log(player2Squares)
-    })
-}
+
 
 function checkWin(playerSquares, whoMarked) {
     // console.log("Checking to see if anyone won!")
@@ -77,8 +85,39 @@ function checkWin(playerSquares, whoMarked) {
             }
         }
         if(squareCount == 3) {
-            console.log("Player won");
-            console.log(winningCombos[i]);
+            // console.log("Player won");
+            // console.log(winningCombos[i]);
+            endGame(winningCombos[i], whoMarked)
         }
     }
 }
+
+function endGame(winningCombo, whoWon) {
+    //if we get to endgame.. winner winner chicken dinner! so the game is over!
+    document.querySelector('#message').innerHTML = `Congrats to player ${whoWon}!`
+    resetButton.classList.remove("hidden");
+    //we know which squres are the winning squares
+    for (let i = 0; i < winningCombo.length; i++) {
+        const winningSquare = winningCombo[i];
+        const squareElem = document.getElementById(winningSquare);
+        console.log(squareElem)
+        squareElem.classList.add("winning-square")
+    }   gameOn = false;
+        
+}
+
+resetButton.addEventListener("click", function (event) {
+    gameOn = true;
+    document.querySelector('#message').innerHTML = `It's O's turn!`;
+    resetButton.className += " hidden"
+    squareCount = 0;
+    console.log(squareCount)
+    player1Squares = [];
+    player2Squares = [];
+    console.log(player2Squares)
+    for (let i = 0; i < squares.length; i++) {
+        squares[i].innerHTML = "-";
+        squares[i].classList.remove("winning-square")
+
+    }
+})

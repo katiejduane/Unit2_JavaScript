@@ -1,6 +1,7 @@
 body {
     background-color: rgb(197, 142, 188);
     text-align: center;
+    font-family: 'Oswald', sans-serif;
 }
 
 h1 {
@@ -21,6 +22,7 @@ h1 {
     height: 185px;
     margin-top: 3px;
     outline: none; /* removes the blue line when we click! /*/
+    font-family: 'Oswald', sans-serif;
     font-size: 60pt;
 
 }
@@ -35,4 +37,24 @@ h1 {
     text-align: center;
     height:  100px;
     margin: 5px;
+}
+
+.winning-square {
+    background-color: rgb(118, 153, 206)
+}
+
+#reset-button {
+    width: 150px;
+    height: 60px;
+    background-color: white;
+    color: black;
+    font-size: 14pt;
+    border: 2px solid black;
+    margin-top: -100px;
+    outline: none; 
+    font-family: 'Oswald', sans-serif;
+}
+
+.hidden {
+    display: none;
 }
