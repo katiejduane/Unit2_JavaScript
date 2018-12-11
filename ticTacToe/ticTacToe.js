@@ -1,0 +1,84 @@
+// 1. Set up board: check!
+// 2. user should be able to click on the Button; when the click happens, the square sould have that player's mark (x or o)
+// 3. If it's x's turn, put an x in, otherwise, put an 0!
+// 4. In order to accomplish 3, we must know whose turn it is! After x goes,o, then vice versa
+// 5. Keep other player from taking a square
+// 6. See if someone won! if so, congrats!
+// 7. Stop the game ig someone won, otherwise, let it keep going 
+
+// =========== GLOBALS! ============
+let whosTurn = 1; // "X"
+//make an array for each player, and push each clicked square into the array
+let player1Squares = [];
+let player2Squares= [];
+//array of all winning combos!
+const winningCombos = [
+    ["A1", "B1", "C1"],
+    ["A2", "B2", "C2"],
+    ["A3", "B3", "C3"],
+    ["A1", "A2", "A3"],
+    ["B1", "B2", "B3"],
+    ["C1", "C2", "C3"],
+    ["A1", "B2", "C3"],
+    ["A3", "B2", "C1"],
+]
+
+//squares is an 'array' with 9 objects in it, each element is an HTML button element
+const squares = document.getElementsByClassName('square');
+// const squares = document.getElementsByTagName('square'); this will do the same thing since we are only looking for the buttons!
+
+for (let i = 0; i < squares.length; i++) {
+    // make it so the squares are "listening"
+    // to add an event listener, what to listen for, what to do when it hears what it's waiting for! 
+    // (the method, with the event to listen for and the function to run if that event happens)
+    squares[i].addEventListener("click", function(event){
+        // console.log(event) will show you what event and where (x/y) that it happened
+        // console.log(this) will show you WHAT (this thing) that was clicked on (liek python's 'self')
+        // console.dir(this) 
+    if (this.innerHTML === "-") {
+        if (whosTurn === 1) {
+            this.innerHTML = "X"; // update the DOM
+            whosTurn = 2; // update JS
+            document.getElementById('message').innerHTML = "It's O's turn!" //update the DOM again
+            player1Squares.push(this.id)
+            checkWin(player1Squares,1)
+        } else {
+            this.innerHTML = "O";
+            whosTurn = 1;
+            document.getElementById('message').innerHTML = "It's X's turn!"
+            player2Squares.push(this.id)
+            checkWin(player2Squares, 2)
+        }
+    } else {
+        document.getElementById('message').innerHTML = "Sorry, that square is taken!"
+    }
+    console.log(player1Squares)
+    console.log(player2Squares)
+    })
+}
+
+function checkWin(playerSquares, whoMarked) {
+    // console.log("Checking to see if anyone won!")
+    // console.log(playerSquares)
+    // console.log(whoMarked)
+    // we know who just went and we know what quares they have
+    // Outer loop: check each winning combo
+    for (let i = 0; i < winningCombos.length; i++){
+        // keep track of this many squares in THIS combo
+        let squareCount = 0
+        // Inner loop: check each squre inside of THIS winning combo
+        // winningCombos[i] = the winningCombo we are on (3 squares)
+        for (let j = 0; j < winningCombos[i].length; j++) {
+            // winningCombos[i][j] = the square in the winningCombo we are on
+            const winningSquare = winningCombos[i][j]
+            if (playerSquares.includes(winningSquare)) {
+                // player has this square
+                squareCount++;
+            }
+        }
+        if(squareCount == 3) {
+            console.log("Player won");
+            console.log(winningCombos[i]);
+        }
+    }
+}

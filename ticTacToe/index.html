@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>TicTacToe</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="styles.css" />
+    <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+</head>
+<body>
+    <h1>Tic Tac Toe Yo!</h1>
+
+    <div id="board">
+        <!-- 
+    All 3 rows, will have 3 buttons.
+    Each row will be called a "board-row"
+    Each button, will have a unique id for that button
+    Each button will have a class of "square"
+         -->
+        <div class="board-row">
+            <button id="A1" class="square">-</button>
+            <button id="B1" class="square">-</button>
+            <button id="C1" class="square">-</button>
+        </div>
+        <div class="board-row">
+            <button id="A2" class="square">-</button>
+            <button id="B2" class="square">-</button>
+            <button id="C2" class="square">-</button>
+        </div>
+        <div class="board-row">
+            <button id="A3" class="square">-</button>
+            <button id="B3" class="square">-</button>
+            <button id="C3" class="square">-</button>
+        
+        </div>
+        </div>
+
+    </div>
+
+    <div id="message">It's X's turn!</div>
+
+    <script src="ticTacToe.js"></script>
+</body>
+</html>

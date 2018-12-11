@@ -1,0 +1,38 @@
+body {
+    background-color: rgb(197, 142, 188);
+    text-align: center;
+}
+
+h1 {
+    font-family: 'Oswald', sans-serif;
+    text-align: center;
+}
+
+#board {
+    max-width: 620px;
+    min-width: 320px;
+    margin: auto;
+}
+
+.square {
+    background-color: #ffffff;
+    border: 2px solid #000000;
+    width: 185px;
+    height: 185px;
+    margin-top: 3px;
+    outline: none; /* removes the blue line when we click! /*/
+    font-size: 60pt;
+
+}
+
+.square:hover{
+    background-color: rgb(240, 214, 100)
+}
+
+#message {
+    font-family: 'Oswald', sans-serif;
+    font-size: 20pt;
+    text-align: center;
+    height:  100px;
+    margin: 5px;
+}
