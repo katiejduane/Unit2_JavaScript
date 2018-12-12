@@ -36,7 +36,7 @@ for (let i = 0; i < squares.length; i++) {
     // make it so the squares are "listening"
     // to add an event listener, what to listen for, what to do when it hears what it's waiting for! 
     // (the method, with the event to listen for and the function to run if that event happens)
-    buttons[i].addEventListener("click", function(event){
+    squares[i].addEventListener("click", function(event){
         // console.log(event) will show you what event and where (x/y) that it happened
         // console.log(this) will show you WHAT (this thing) that was clicked on (liek python's 'self')
         // console.dir(this) 
@@ -90,6 +90,10 @@ function checkWin(playerSquares, whoMarked) {
             endGame(winningCombos[i], whoMarked)
         }
     }
+}
+
+function computerTurn() {
+
 }
 
 function endGame(winningCombo, whoWon) {
