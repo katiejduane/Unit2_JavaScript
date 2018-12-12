@@ -105,16 +105,24 @@ restartButton.addEventListener("click", function (event) {
     gameOn = true;
     document.querySelector('.alert').innerHTML = `You must connect 4 to win!`; //this line works
     restartButton.className += " hidden"
-    boardArray = makeArray(gridSize);
-    for (let i = 0; i < buttons.length; i++) {
-        buttons[i].innerHTML = "~"; 
-        buttons[i].style.backgroundColor = "white";
-        buttons[i].style.color =  "#ffe605"
+    boardArray = makeArray(gridSize)
+    for(let i = 0; i < boardArray.length; i++) {
+        console.log("i")
+        for (let j = 0; j < boardArray[i].length; j++) {
+            console.log("j")
+        }
+    }
+})
+
+    // for (let i = 0; i < buttons.length; i++) {
+    //     buttons[i].innerHTML = "~"; 
+    //     buttons[i].style.backgroundColor = "white";
+    //     buttons[i].style.color =  "#ffe605"
         //why won't the hover color work anymore after this point!? maybe the .style method overwrites everything 
         // and shouldn't be used here or in the actual click event...??
 
-    }
-})
+//     }
+// })
 
 //notes for making the computer turn function//
 // function computerTurn(){

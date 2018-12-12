@@ -115,13 +115,12 @@ resetButton.addEventListener("click", function (event) {
     document.querySelector('#message').innerHTML = `It's O's turn!`;
     resetButton.className += " hidden"
     squareCount = 0;
-    console.log(squareCount)
     player1Squares = [];
     player2Squares = [];
-    console.log(player2Squares)
     for (let i = 0; i < squares.length; i++) {
         squares[i].innerHTML = "-";
         squares[i].classList.remove("winning-square")
 
     }
 })
+
