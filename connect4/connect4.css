@@ -2,6 +2,7 @@ body {
     font-family: 'Pacifico', cursive;
     background-color: rgb(201, 177, 218);
     text-align: center;
+    margin: 0 auto;
 }
 
 h1 {
@@ -15,7 +16,7 @@ button {
     background-color: white;
     width: 80px;
     height: 80px;
-    color: rgb(255, 230, 5);
+    color: #ffe605;
     font-family: 'Pacifico', cursive;
     font-size: 18pt;
     border-radius: 5px;
@@ -27,4 +28,24 @@ button {
 button:hover {
     background-color: rgb(255, 230, 5);
     color: white;
+}
+
+.alert {
+    color: white;
+    width: 400px;
+    height: 75px;
+    display: inline-block;
+    margin-top: 6px;
+    font-size: 18pt;
+}
+
+.hidden {
+    display: none; /* this also isn't working, it's always displayed even though my syntax for adding this class was correct...*/
+}
+
+.start-again {
+    display: inline-block; /*for some reason i can't get things to center and be "block" display in this document... */
+    width: 150px;
+    height: 50px;
+    font-size: 18px;
 }
