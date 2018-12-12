@@ -1,5 +1,30 @@
-.square {
-    background-color: red;
-    width: 100px;
-    height: 100px;
+body {
+    font-family: 'Pacifico', cursive;
+    background-color: rgb(201, 177, 218);
+    text-align: center;
+}
+
+h1 {
+    color: rgb(255, 230, 5);
+    font-size: 36pt;
+    margin-top: -3px;
+    margin-bottom: 2px;
+}
+
+button {
+    background-color: white;
+    width: 80px;
+    height: 80px;
+    color: rgb(255, 230, 5);
+    font-family: 'Pacifico', cursive;
+    font-size: 18pt;
+    border-radius: 5px;
+    margin: 3px;
+    outline: none;
+    border: none;
+}
+
+button:hover {
+    background-color: rgb(255, 230, 5);
+    color: white;
 }
