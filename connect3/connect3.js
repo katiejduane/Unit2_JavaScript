@@ -17,8 +17,7 @@ function makeArray(gridSize) {
 
 //make arrays to use in game functions
 let boardArray = makeArray(gridSize); 
-// makeArray(gridSize, player1Array);
-// makeArray(gridSize, player2Array);
+// console.log(boardArray)
 
 // game start variables //
 let turn = 1;
@@ -36,8 +35,6 @@ function createBoard(gridSize) {
             gameButton.classList.add("game-buttons")
             boardRow.appendChild(gameButton);
             let clickMe = function () {
-                    console.log(i)
-                    console.log(j)
                     if (gameOn) {
                         if (this.innerHTML === "~") {
                             if (turn === 1) {
@@ -45,6 +42,9 @@ function createBoard(gridSize) {
                                 this.style.color = "White";
                                 this.innerHTML = "1"
                                 boardArray[i][j] = 1
+                                checkRows(boardArray, 1)
+                                checkCols(boardArray, 1)
+                                console.log(boardArray)
                                 turn = 2;
                                 document.querySelector('.alert').innerHTML = "It's Player 2's turn!"
                             } else {
@@ -52,7 +52,8 @@ function createBoard(gridSize) {
                                 this.style.color = "white";
                                 this.innerHTML = "2"
                                 boardArray[i][j] = 2
-                                console.log(boardArray)
+                                checkRows(boardArray, 2)
+                                checkCols(boardArray, 2)
                                 turn = 1;
                                 document.querySelector('.alert').innerHTML = "It's Player 1's turn!"
                             }
@@ -71,7 +72,7 @@ createBoard(gridSize)
 
 // create message div!
 let message = document.createElement("DIV")
-let messageText = document.createTextNode("You've got to connect four to win!")
+let messageText = document.createTextNode("You've got to connect three to win!")
 message.appendChild(messageText)
 document.body.appendChild(message)
 message.classList.add('alert')
@@ -86,31 +87,56 @@ restartButton.classList.add('hidden') //not working
 
 // function to check rows... // function checkWin(boardArray, playerArray, whoMarked)
 function checkRows(array, turn) {
-        for (let i = 0; i < array.lenth; i++) {
+        for (let i = 0; i < array.length -3 ; i++) {
+            let squareCount = 0;
             for (let j = 0; j < array[i].length; j++) {
-                if ( array[i][j] == turn && j == array.length -1) {
-                    console.log("win")
-                    return true;
-                } else if (array[i][j] != turn) {
-                    break;
+                if (array[i][j] == turn) {
+                    squareCount++
+                    // console.log(i)
                 }
             }
-        } return false;
+            if (squareCount == 3) {
+                console.log("you win!")
+            }
+        } 
 }
-checkRows(boardArray, 1)
+
+function checkCols(array, turn) {
+    console.log("check")
+    for (let i = 0; i < array.length; i++) {
+        let squareCount = 0;
+        for (let j = 0; j < array.length; j++) {
+            if (array[j][i] == turn) {
+                squareCount++
+                // console.log(squareCount)
+                console.log(j)
+            }
+        }
+        if (squareCount == 3) {
+            console.log("you win!")
+        }
+    } 
+}
+
 
 // function endGame(winningCombo, whoWon)
 
 restartButton.addEventListener("click", function (event) {
     gameOn = true;
-    document.querySelector('.alert').innerHTML = `You must connect 4 to win!`; //this line works
+    document.querySelector('.alert').innerHTML = `You must connect three to win!`; //this line works
     restartButton.className += " hidden"
     boardArray = makeArray(gridSize)
     for(let i = 0; i < boardArray.length; i++) {
-        console.log("i")
+        // console.log("i")
         for (let j = 0; j < boardArray[i].length; j++) {
-            console.log("j")
+            // console.log("j")
         }
+    }
+    const s = document.getElementsByClassName('game-buttons')
+    for(let i = 0; i<s.length; i++){
+        s[i].innerHTML = "~"
+        s[i].style.backgroundColor = "white"
+        s[i].style.color = "yellow"
     }
 })
 

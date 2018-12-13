@@ -23,6 +23,9 @@ const winningCombos = [
     ["A3", "B2", "C1"],
 ]
 
+// function tie() {
+let filledSquareCount = 0;
+
 let resetButton = document.querySelector('#reset-button')
 
 let gameOn = true;
@@ -41,27 +44,34 @@ for (let i = 0; i < squares.length; i++) {
         // console.log(this) will show you WHAT (this thing) that was clicked on (liek python's 'self')
         // console.dir(this) 
     if(gameOn) {
-        if (this.innerHTML === "-") {
-            if (whosTurn === 1) {
-                this.innerHTML = "X"; // update the DOM
-                whosTurn = 2; // update JS
-                document.getElementById('message').innerHTML = "It's O's turn!" //update the DOM again
-                player1Squares.push(this.id)
-                checkWin(player1Squares,1)
-            } else {
-                this.innerHTML = "O";
-                whosTurn = 1;
-                document.getElementById('message').innerHTML = "It's X's turn!"
-                player2Squares.push(this.id)
-                checkWin(player2Squares, 2)
-            }
+        
+            if (this.innerHTML === "-") {
+                if (whosTurn === 1) {
+                    this.innerHTML = "X"; // update the DOM
+                    whosTurn = 2; // update JS
+                    filledSquareCount++
+                    document.getElementById('message').innerHTML = "It's O's turn!" //update the DOM again
+                    player1Squares.push(this.id)
+                    checkWin(player1Squares,1)
+                    checkTie()
+                } else {
+                    this.innerHTML = "O";
+                    whosTurn = 1;
+                    filledSquareCount++
+                    console.log(filledSquareCount)
+                    document.getElementById('message').innerHTML = "It's X's turn!"
+                    player2Squares.push(this.id)
+                    checkWin(player2Squares, 2)
+                    checkTie()
+                }
         } else {
             document.getElementById('message').innerHTML = "Sorry, that square is taken!"
-        } 
+            } 
+        }    
         }
-        console.log(player1Squares)
-        console.log(player2Squares)
-        })
+        // console.log(player1Squares)
+        // console.log(player2Squares)
+        )
     }
 
 
@@ -92,9 +102,23 @@ function checkWin(playerSquares, whoMarked) {
     }
 }
 
-function computerTurn() {
-
+function checkTie() {
+    if (filledSquareCount == squares.length) {
+        tie()
 }
+
+function tie() {
+    document.querySelector('#message').innerHTML = `TIE`
+    resetButton.classList.remove("hidden");
+    //we know which squres are the winning squares
+    gameOn = false;
+}
+
+
+// function computerTurn() {
+
+// }
+
 
 function endGame(winningCombo, whoWon) {
     //if we get to endgame.. winner winner chicken dinner! so the game is over!
@@ -123,4 +147,18 @@ resetButton.addEventListener("click", function (event) {
 
     }
 })
+}
 
+// Sean McQuaid[3: 47 PM]
+// function computerMove() {
+//     const letter = ["A", "B", "C"];
+//     let randomLet = Math.floor(Math.random() * 3);
+//     let randomNum = Math.ceil(Math.random() * 3);
+//     let computerPlay = letter[randomLet] + randomNum.toString();
+//     if (!playerOneSquares.includes(computerPlay) && !playerTwoSquares.includes(computerPlay)) {
+//         playerTwoSquares.push(computerPlay);
+//         squares[computerPlay].innerHTML = "O";
+//     } else {
+//         computerMove();
+//     }
+// }
