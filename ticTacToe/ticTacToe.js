@@ -10,6 +10,8 @@
 let humanTurn = true; // "X"
 let gameOn = true;
 let compTurn = false;
+let isTied = false;
+let win = false;
 
 let player1Squares = [];
 let player2Squares= [];
@@ -39,30 +41,20 @@ for (let i = 0; i < squares.length; i++) {
                 this.innerHTML = "X"; // update the DOM
                 humanTurn = "computer"; // update JS
                 filledSquareCount++
-                document.getElementById('message').innerHTML = "It's O's turn!" //update the DOM again
+                // document.getElementById('message').innerHTML = "It's O's turn!" //update the DOM again
                 player1Squares.push(this.id)
-                checkWin(player1Squares,1)
+                checkWin(player1Squares, 1)
                 checkTie()
                 humanTurn = false;
                 computerTurn = true;
-                if (computerTurn)
-                console.log("bye")
-                computerMove();
-                filledSquareCount++
-                checkWin(player2Squares, 2);
-                checkTie();
-                document.getElementById('message').innerHTML = "It's X's turn!"
+                if (computerTurn) {
+                    computerMove();
+                    filledSquareCount++
+                    checkWin(player2Squares, 2);
+                    checkTie();
+                    // document.getElementById('message').innerHTML = "It's X's turn!"
                 }
-                // this.innerHTML = "O";
-                // humanTurn = 1;
-                // filledSquareCount++
-                // console.log(filledSquareCount)
-                // document.getElementById('message').innerHTML = "It's X's turn!"
-                // player2Squares.push(this.id)
-                // checkWin(player2Squares, 2)
-                // checkTie()
-            
-            
+            }
         } else {
             document.getElementById('message').innerHTML = "Sorry, that square is taken!"
             } 
@@ -80,18 +72,34 @@ function computerMove() {
         squares[computerPlay].innerHTML = "O";
         computerTurn = false;
         humanTurn = true;
-    } else {
-        // computerMove();
+    } else if (isTied == false) {
         computerMove()
+    } else {
+        tie()
     }
 }
 
+function checkTie() {
+    if (filledSquareCount == squares.length) {
+        tie()
+        isTied = true;
+    }
+}
+
+function tie() {
+    document.getElementById('message').innerHTML = `TIE`
+    resetButton.classList.remove("hidden");
+    gameOn = false;
+    }
+
 
 function endGame(winningCombo, whoWon) {
-    //if we get to endgame.. winner winner chicken dinner! so the game is over!
-    document.querySelector('#message').innerHTML = `Congrats to player ${whoWon}!`
+    if (whoWon == 1) {
+        document.getElementById('message').innerHTML = `Congrats to the human player!`
+    } else {
+        document.getElementById('message').innerHTML = `Congrats to the computer! Sorry human.`
+    }
     resetButton.classList.remove("hidden");
-    //we know which squres are the winning squares
     for (let i = 0; i < winningCombo.length; i++) {
         const winningSquare = winningCombo[i];
         const squareElem = document.getElementById(winningSquare);
@@ -100,6 +108,7 @@ function endGame(winningCombo, whoWon) {
     } gameOn = false;
 
 }
+
 
 function checkWin(playerSquares, whoMarked) {
     for (let i = 0; i < winningCombos.length; i++){
@@ -111,25 +120,20 @@ function checkWin(playerSquares, whoMarked) {
             }
         }
         if(squareCount == 3) {
+            win = true;
             endGame(winningCombos[i], whoMarked)
         }
     }
 }
 
-function checkTie() {
-    if (filledSquareCount == squares.length) {
-        tie()
-}
-
-function tie() {
-    document.querySelector('#message').innerHTML = `TIE`
-    resetButton.classList.remove("hidden");
-    gameOn = false;
-}
 
 resetButton.addEventListener("click", function (event) {
     gameOn = true;
-    document.querySelector('#message').innerHTML = `It's O's turn!`;
+    isTied = false;
+    win = false;
+    humanTurn = true;
+    compTurn = false;
+    document.getElementById('message').innerHTML = `It's you versus the computer!`;
     resetButton.className += " hidden"
     squareCount = 0;
     player1Squares = [];
@@ -141,4 +145,4 @@ resetButton.addEventListener("click", function (event) {
 
     }
 })
-}
+
