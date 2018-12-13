@@ -41,7 +41,6 @@ for (let i = 0; i < squares.length; i++) {
                 this.innerHTML = "X"; // update the DOM
                 humanTurn = "computer"; // update JS
                 filledSquareCount++
-                // document.getElementById('message').innerHTML = "It's O's turn!" //update the DOM again
                 player1Squares.push(this.id)
                 checkWin(player1Squares, 1)
                 checkTie()
@@ -52,7 +51,6 @@ for (let i = 0; i < squares.length; i++) {
                     filledSquareCount++
                     checkWin(player2Squares, 2);
                     checkTie();
-                    // document.getElementById('message').innerHTML = "It's X's turn!"
                 }
             }
         } else {
