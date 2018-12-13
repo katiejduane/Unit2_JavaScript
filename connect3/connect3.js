@@ -22,7 +22,9 @@ let boardArray = makeArray(gridSize);
 // game start variables //
 let turn = 1;
 let gameOn = true;
+let activeSquares = [];
 
+// function to create board and event listeners for each button
 function createBoard(gridSize) {
     for (let i = 0; i < gridSize; i++) {
         let boardRow = document.createElement("DIV")
@@ -44,9 +46,7 @@ function createBoard(gridSize) {
                                 boardArray[i][j] = 1
                                 checkRows(boardArray, 1)
                                 checkCols(boardArray, 1)
-                                console.log(boardArray)
                                 turn = 2;
-                                document.querySelector('.alert').innerHTML = "It's Player 2's turn!"
                             } else {
                                 this.style.backgroundColor = "lightcyan";
                                 this.style.color = "white";
@@ -55,8 +55,9 @@ function createBoard(gridSize) {
                                 checkRows(boardArray, 2)
                                 checkCols(boardArray, 2)
                                 turn = 1;
-                                document.querySelector('.alert').innerHTML = "It's Player 1's turn!"
-                            }
+                            }   
+                            activeSquares.push("*")
+                            checkTie()
                         } else {
                             document.querySelector('.alert').innerHTML = "Sorry, that square is already taken!!"
                         }
@@ -83,7 +84,7 @@ let restartText = document.createTextNode("Play Again!")
 restartButton.appendChild(restartText)
 document.body.appendChild(restartButton)
 restartButton.classList.add('start-again')
-restartButton.classList.add('hidden') //not working
+restartButton.classList.add('hidden')
 
 // function to check rows... // function checkWin(boardArray, playerArray, whoMarked)
 function checkRows(array, turn) {
@@ -92,39 +93,54 @@ function checkRows(array, turn) {
             for (let j = 0; j < array[i].length; j++) {
                 if (array[i][j] == turn) {
                     squareCount++
-                    // console.log(i)
                 }
             }
-            if (squareCount == 3) {
-                console.log("you win!")
+            if (squareCount == 3) { //this doesn't actually work because, see below!
+                win(turn)
             }
         } 
 }
 
+// function to check oolumns!
 function checkCols(array, turn) {
-    console.log("check")
     for (let i = 0; i < array.length; i++) {
         let squareCount = 0;
         for (let j = 0; j < array.length; j++) {
             if (array[j][i] == turn) {
                 squareCount++
-                // console.log(squareCount)
-                console.log(j)
             }
         }
-        if (squareCount == 3) {
-            console.log("you win!")
+        if (squareCount == 3) { //this doesn't actually work because any 3 out of 4/gridsize will win... 
+        // need it to be 3 CONSECUTIVE squares!!!!
+            win(turn)
         }
     } 
 }
 
+//function for when a player wins
+function win(turn) {
+    document.querySelector('.alert').innerHTML = `Congrats player ${turn}, you won!`;
+    restartButton.classList.remove('hidden')
+}
 
-// function endGame(winningCombo, whoWon)
+// what to do if there IS a tie
+function tie() {
+    document.querySelector('.alert').innerHTML = `Ooops! A tie!`;
+    restartButton.classList.remove('hidden')
+}
+
+//function to check if tie
+function checkTie() {
+    if (activeSquares.length == (gridSize*gridSize)) {
+        tie()
+    }
+}
 
 restartButton.addEventListener("click", function (event) {
     gameOn = true;
     document.querySelector('.alert').innerHTML = `You must connect three to win!`; //this line works
-    restartButton.className += " hidden"
+    restartButton.classList.add('hidden')
+    activeSquares = []
     boardArray = makeArray(gridSize)
     for(let i = 0; i < boardArray.length; i++) {
         // console.log("i")
@@ -136,19 +152,10 @@ restartButton.addEventListener("click", function (event) {
     for(let i = 0; i<s.length; i++){
         s[i].innerHTML = "~"
         s[i].style.backgroundColor = "white"
-        s[i].style.color = "yellow"
+        s[i].style.color = "#ffe605"
     }
 })
 
-    // for (let i = 0; i < buttons.length; i++) {
-    //     buttons[i].innerHTML = "~"; 
-    //     buttons[i].style.backgroundColor = "white";
-    //     buttons[i].style.color =  "#ffe605"
-        //why won't the hover color work anymore after this point!? maybe the .style method overwrites everything 
-        // and shouldn't be used here or in the actual click event...??
-
-//     }
-// })
 
 //notes for making the computer turn function//
 // function computerTurn(){

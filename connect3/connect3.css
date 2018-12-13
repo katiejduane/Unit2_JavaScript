@@ -40,7 +40,7 @@ button:hover {
 }
 
 .hidden {
-    /* display: none !important; this also isn't working, it's always displayed even though my syntax for adding this class was correct... */
+    display: none !important; 
 }
 
 .start-again {
