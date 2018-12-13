@@ -44,7 +44,6 @@ for (let i = 0; i < squares.length; i++) {
         // console.log(this) will show you WHAT (this thing) that was clicked on (liek python's 'self')
         // console.dir(this) 
     if(gameOn) {
-        
             if (this.innerHTML === "-") {
                 if (whosTurn === 1) {
                     this.innerHTML = "X"; // update the DOM
@@ -69,11 +68,22 @@ for (let i = 0; i < squares.length; i++) {
             } 
         }    
         }
-        // console.log(player1Squares)
-        // console.log(player2Squares)
         )
     }
 
+function endGame(winningCombo, whoWon) {
+    //if we get to endgame.. winner winner chicken dinner! so the game is over!
+    document.querySelector('#message').innerHTML = `Congrats to player ${whoWon}!`
+    resetButton.classList.remove("hidden");
+    //we know which squres are the winning squares
+    for (let i = 0; i < winningCombo.length; i++) {
+        const winningSquare = winningCombo[i];
+        const squareElem = document.getElementById(winningSquare);
+        console.log(squareElem)
+        squareElem.classList.add("winning-square")
+    } gameOn = false;
+
+}
 
 function checkWin(playerSquares, whoMarked) {
     // console.log("Checking to see if anyone won!")
@@ -110,29 +120,13 @@ function checkTie() {
 function tie() {
     document.querySelector('#message').innerHTML = `TIE`
     resetButton.classList.remove("hidden");
-    //we know which squres are the winning squares
     gameOn = false;
 }
 
 
 // function computerTurn() {
-
 // }
 
-
-function endGame(winningCombo, whoWon) {
-    //if we get to endgame.. winner winner chicken dinner! so the game is over!
-    document.querySelector('#message').innerHTML = `Congrats to player ${whoWon}!`
-    resetButton.classList.remove("hidden");
-    //we know which squres are the winning squares
-    for (let i = 0; i < winningCombo.length; i++) {
-        const winningSquare = winningCombo[i];
-        const squareElem = document.getElementById(winningSquare);
-        console.log(squareElem)
-        squareElem.classList.add("winning-square")
-    }   gameOn = false;
-        
-}
 
 resetButton.addEventListener("click", function (event) {
     gameOn = true;
@@ -141,6 +135,7 @@ resetButton.addEventListener("click", function (event) {
     squareCount = 0;
     player1Squares = [];
     player2Squares = [];
+    filledSquareCount = [];
     for (let i = 0; i < squares.length; i++) {
         squares[i].innerHTML = "-";
         squares[i].classList.remove("winning-square")
