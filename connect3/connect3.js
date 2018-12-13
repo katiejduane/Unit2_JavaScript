@@ -101,7 +101,7 @@ function checkRows(array, turn) {
         } 
 }
 
-// function to check oolumns!
+// function to check columns!
 function checkCols(array, turn) {
     for (let i = 0; i < array.length; i++) {
         let squareCount = 0;
@@ -121,6 +121,7 @@ function checkCols(array, turn) {
 function win(turn) {
     document.querySelector('.alert').innerHTML = `Congrats player ${turn}, you won!`;
     restartButton.classList.remove('hidden')
+    gameOn = false;
 }
 
 // what to do if there IS a tie

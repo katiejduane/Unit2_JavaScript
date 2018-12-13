@@ -70,19 +70,20 @@ function computerMove() {
         squares[computerPlay].innerHTML = "O";
         computerTurn = false;
         humanTurn = true;
-    } else if (isTied == false) {
-        computerMove()
+    } else if (isTied == false && filledSquareCount <= squares.length) {
+        computerMove() //why is this causing a callstack max error ONLY when i win/tie at the same time!????
     } else {
         tie()
     }
 }
 
 function checkTie() {
-    if (filledSquareCount == squares.length) {
-        tie()
-        isTied = true;
+    if (filledSquareCount == squares.length && win == false) {
+            tie()
+            isTied = true;
+        } //&& win == false but this causes another call stack error
     }
-}
+
 
 function tie() {
     document.getElementById('message').innerHTML = `TIE`

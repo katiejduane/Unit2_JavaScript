@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>**Black Jack**</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="styles.css" />
+
+</head>
+<body>
+
+<!-- 1. lay out our table; make it green with a white border
+2. create an element for the players hand
+3. create an element for the deals hand
+4. create an element for the players total
+5. create an element for the dealers total6. create an element for each card (max 6)
+7. make a deal, hit, and stand button -->
+<div class="container">
+    <div class="table">
+        <div class="player-total">0</div>
+        <div class="player-cards">
+            <div class="card-1"></div>
+            <div class="card-2"></div>
+            <div class="card-3"></div>
+            <div class="card-4"></div>
+            <div class="card-5"></div>
+            <div class="card-6"></div>
+        </div>
+        <div class="dealer-total">0</div>
+        <div class="dealer-cards">
+            <div class="card-1"></div>
+            <div class="card-2"></div>
+            <div class="card-3"></div>
+            <div class="card-4"></div>
+            <div class="card-5"></div>
+            <div class="card-6"></div>
+        </div>
+        <div class="buttons">
+            <button class="deal-button">Deal</button>
+            <button class="hit-button">Hit</button>
+            <button class="stand-button">Stand</button>
+        </div>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="blackJack.js"></script>
+
+</body>
+</html>
