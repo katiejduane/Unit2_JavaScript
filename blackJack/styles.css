@@ -76,7 +76,6 @@ button:hover{
 .card {
     width: 100px;
     padding: 10px;
-    /* background-color: white; */
     display: inline-block;
     height: 120px;
 }
@@ -122,12 +121,31 @@ button:hover{
     font-family: 'Fugaz One', cursive;
     margin-top: -10px;
     text-align: center;
+    position: absolute;
+    
 
 }
 
 .player-score {
     font-family: 'Fugaz One', cursive;
     text-align: center;
+    position: absolute;
+    display:inline
 }
+
+img {
+    width: 100px;
+}
+
+.heart{
+    width: 100px;
+    position: relative;
+}
+
+.diamond {
+    width: 100px;
+    position: relative;
+}
+
 
  

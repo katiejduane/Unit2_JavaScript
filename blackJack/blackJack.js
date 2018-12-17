@@ -1,9 +1,9 @@
 //TO-DO:
-// --clear cards! withOUT causing errors to be thrown/images to be called "undefined" and not show up in
-// the second or third etc rounds...
-// --finalRound function to end game
-// --the changeAce function
-// --get haeart and diamond for score boards
+// --clear cards! withOUT causing errors to be thrown/images to be called "undefined" and not show up in the second or third etc rounds...
+// --finalRound function to end game and give option to play again from 0
+// --get heart and diamond for score boards
+// --figure out what the hell 'classSelector' is/does...
+// --make sure no issues/confusion between player/dealerTotal and handTotal variables, esp with Ace function...
 
 
 const freshDeck = createDeck();
@@ -87,10 +87,12 @@ if (gameOn) {
 
     
     $('.reset-button').click(() => {
+        handTotal = 0;
         playerTotal = 0;
         dealerTotal = 0;
         playerHand = []
         dealerHand = []
+        hasAce = false;
         $(".card").html("");
         $('.player-total').text(playerTotal)
         $('.dealer-total').text(dealerTotal)
@@ -105,10 +107,12 @@ if (gameOn) {
         round++
         document.querySelector(".message").innerHTML = `Round ${round} of 5!`
         })
-       
-    checkRound()
-
+    
 }
+
+checkAce(playerHand, 'player');
+checkAce(dealerHand, 'dealer');
+checkRound();
 
 // ===================== Game Functionality! ======================
 
@@ -141,17 +145,15 @@ function checkWin() {
     // 6. if dealer > player, dealer wins
     // 7. else... push (tie)
 
-function checkAce() {
+function checkAce(hand, who) {
+    let handTotal = 0; //make sure this doesn't fuck up the scoring...
     let hasAce = false;
     hand.forEach((card, i) => {
-        // console.log(card);
-        // copy everything in the string except for the last character
         let thisCardsValue = card.slice(0, -1);
         if (thisCardsValue > 10) {
             thisCardsValue = 10;
         } else if (thisCardsValue == 1) {
             hasAce = true;
-            // need to fix this logic
         }
         handTotal += Number(thisCardsValue);
     })
@@ -212,19 +214,28 @@ function tieGame() {
     });
 }
 
-function removeCards(who, where){
-    console.log("clear")
-    //how to clear
-    playerHand = []
-    dealerHand = []
-}
+// function removeCards(who, where){
+//     console.log("clear")
+//     //how to clear
+//     playerHand = []
+//     dealerHand = []
+// }
 
 function checkRound() {
     if (round == 5) {
-        console.log("boo!")
-        //screen overlay with final score and opion to play again
-    gameon = false;
+       endGame()
     }
+}
+
+function endGame(){
+    //CSS overlay with winning person's name and final score!
+    if (playerFinal > dealerFinal){
+        //player wins
+    } else {
+        //dealer wins
+    }
+    gameOn = false
+    //some sort of function to turn game back on to play another five rounds...
 }
 
 function calculateTotal(hand, who) {
@@ -238,7 +249,7 @@ function calculateTotal(hand, who) {
         let thisCardsValue = card.slice(0, -1);
         handTotal += Number(thisCardsValue);
     })
-    console.log(handTotal)
+    console.log(handTotal + "butts")
     const classSelector = `.${who}-total`
     $(classSelector).html(handTotal);
     return handTotal
