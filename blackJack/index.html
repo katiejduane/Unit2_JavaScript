@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="styles.css" />
     <link href="https://fonts.googleapis.com/css?family=Nunito|Rye" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Aldrich|Fugaz+One|Lobster+Two|Press+Start+2P|Ultra" rel="stylesheet">
 
 
 </head>
@@ -20,6 +21,9 @@
 5. create an element for the dealers total6. create an element for each card (max 6)
 7. make a deal, hit, and stand button -->
 <div class="container">
+    <div id="heart">
+    <div class="player-final"> You: 0</div>
+    </div>
     <div class="table">
         <div class="player-total">0</div>
         <div class="player-cards">
@@ -40,13 +44,17 @@
             <div class="card card-6"></div>
         </div>
         <div class="buttons">
-            <button class="deal-button">Deal</button>
+            <button class="deal-button fade-out">Deal</button>
             <button class="hit-button">Hit</button>
             <button class="stand-button">Stand</button>
+            <button class="reset-button fade-in">Again!</button>
         </div>
     </div>
+    <div id="diamond">
+    <div class="dealer-final">Dealer: 0</div>
+    </div>
 </div>
-<div class = message> This is a message from the compuutte e er r rr..</div>
+<div class = "message"><p>Who shall win? You or a computer dealer!?</p></div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="blackJack.js"></script>

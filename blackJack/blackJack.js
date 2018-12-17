@@ -1,8 +1,23 @@
+//TO-DO:
+// --clear cards! withOUT causing errors to be thrown/images to be called "undefined" and not show up in
+// the second or third etc rounds...
+// --finalRound function to end game
+// --the changeAce function
+// --get haeart and diamond for score boards
+
+
 const freshDeck = createDeck();
 let theDeck = freshDeck.slice();
 let playerHand = [];
 let dealerHand = [];
 let gameOn = true;
+let playerFinal = 0;
+let dealerFinal = 0;
+let round = 1;
+let stand = false;
+$('.reset-button').css({
+    'visibility': 'hidden',
+    'opacity': 0 })
 
 //blackjack deal function
 if (gameOn) {
@@ -33,17 +48,21 @@ if (gameOn) {
     })
 
     $('.deal-button').click(function(){
-        $('.deal-button').fadeOut(2000);
+        $('.deal-button').css({
+            'opacity': 0
+        });
     });
 
 
     $('.hit-button').click(() => {
         // grab the next card in the deck 
-        const topCard = theDeck.shift();
-        // push it onto the players Hand
-        playerHand.push(topCard)
-        placeCard('player', playerHand.length, topCard);
-        calculateTotal(playerHand, 'player')
+        if (stand == false) {
+            let topCard = theDeck.shift();
+            // push it onto the players Hand
+            playerHand.push(topCard)
+            placeCard('player', playerHand.length, topCard);
+            calculateTotal(playerHand, 'player')
+        }
     })
 
     $('.stand-button').click(() => {
@@ -55,77 +74,157 @@ if (gameOn) {
         // 1. If I have less than 17, I MUST hit.
         // 2. If I have 17 or more I CANNOT hit, even if it
         // means I will lose
-        let dealersTotal = calculateTotal(dealerHand, 'dealer');
-        while (dealersTotal < 17) {
+        stand = true;
+        let dealerTotal = calculateTotal(dealerHand, 'dealer');
+        while (dealerTotal < 17) {
             const topCard = theDeck.shift();
             dealerHand.push(topCard);
             placeCard('dealer', dealerHand.length, topCard);
-            dealersTotal = calculateTotal(dealerHand, 'dealer');
+            dealerTotal = calculateTotal(dealerHand, 'dealer');
         }
         checkWin();
     })
+
+    
+    $('.reset-button').click(() => {
+        playerTotal = 0;
+        dealerTotal = 0;
+        playerHand = []
+        dealerHand = []
+        $(".card").html("");
+        $('.player-total').text(playerTotal)
+        $('.dealer-total').text(dealerTotal)
+        $('.reset-button').css({
+            'opacity': 0
+        });
+        $('.deal-button').css({
+            'opacity': 1
+        })
+        $('.player-final').text(`You: ${playerFinal}`)
+        $('.dealer-final').text(`Dealer: ${dealerFinal}`)
+        round++
+        document.querySelector(".message").innerHTML = `Round ${round} of 5!`
+        })
+       
+    checkRound()
+
 }
 
-    function checkWin() {
-        const playerTotal = calculateTotal(playerHand, 'player');
-        const dealersTotal = calculateTotal(dealersHand, 'dealer');
-        if (playerTotal > 21) {
-            gameOn = false;
-            lose('player');
-        } else if (dealersTotal > 21) {
-            gameOn = false;
-            win('player')
-        } else if (playerHand.length <= 3  && playerTotal == 21) {
-            gameOn = false;
-            blackJack('player')
-        } else if (dealersHand.length <= 3 && dealersTotal == 21) {
-            gameOn = false;
-            blackJack('dealer')
-        } else if ( playerHand > dealersHand) {
-            gameOn = false;
-            win('player')
-        } else if (playerHand < dealersHand) {
-            gameOn = false;
-            lose('player')
-        } else {
-            gameOn = false;
-            tieGame()
-        }
-     }
-    
+// ===================== Game Functionality! ======================
 
+function checkWin() {
+    let playerTotal = calculateTotal(playerHand, 'player');
+    let dealerTotal = calculateTotal(dealerHand, 'dealer');
+    if (playerTotal > 21 && dealerTotal < 21) {
+        bust('player');
+    } else if (playerTotal > 21 && dealerTotal > 21) {
+        bust('dealer')
+    } else if (dealerTotal > 21 && playerTotal < 21) {
+        win('player')
+    } else if (playerTotal == 21) {
+        blackJack('player')
+    } else if (dealerTotal == 21) {
+        blackJack('dealer')
+    } else if (playerTotal < 21 && playerTotal > dealerTotal) {
+        win('player')
+    } else if (playerTotal < dealerTotal && dealerTotal < 21) {
+        lose('player')
+    } else {
+        tieGame()
+    }
+}
     // 1. If the player has > 21, player busts and loses.
     // 2. If the dealer has > 21, dealer busts and loses.
     // 3. If playersHand.length == 2 AND playerTotal == 21... BLACKJACK
-    // 4. If dealerHand.length == 2 AND dealersTotal == 21... BLACKJACK
+    // 4. If dealerHand.length == 2 AND dealerTotal == 21... BLACKJACK
     // 5. If player > dealer, player wins
     // 6. if dealer > player, dealer wins
     // 7. else... push (tie)
 
+function checkAce() {
+    let hasAce = false;
+    hand.forEach((card, i) => {
+        // console.log(card);
+        // copy everything in the string except for the last character
+        let thisCardsValue = card.slice(0, -1);
+        if (thisCardsValue > 10) {
+            thisCardsValue = 10;
+        } else if (thisCardsValue == 1) {
+            hasAce = true;
+            // need to fix this logic
+        }
+        handTotal += Number(thisCardsValue);
+    })
+    if (handTotal > 21 && hasAce === true) {
+        handTotal -= 10;
+    }
+}
+
 function blackJack(whoJacked) {
-    console.log("jack")
+    $(".message").text(`${whoJacked} got Blackjack!`);
+    $('.reset-button').css({
+        'opacity': 1,
+        'visibility': 'visible'
+    });
+    if (whoJacked == 'player') {
+        playerFinal += 1000
+    } else {
+        dealerFinal += 1000
+    }
+}
+
+function bust(whoBusted){
+    if (whoBusted = 'player') {
+        $(".message").text(`Yikes! you busted!!`);
+    } else {
+        $(".message").text(`The dealer busted! Silly computer!`)
+    }
+    $('.reset-button').css({
+        'opacity': 1,
+        'visibility': 'visible'
+    });
 }
 
 function win(whoWon) {
-    // have an overlay of some sort with "you win!"
+    $(".message").text(`Yeeaaass! You won this round!`)
+    $('.reset-button').css({
+        'opacity': 1,
+        'visibility': 'visible'
+    });
     console.log("win")
+    playerFinal += 500;
 }
 
 function lose(whoLost) {
-    console.log("lose")
+    document.querySelector(".message").innerHTML = `Uh oh! You lost!`
+    $('.reset-button').css({
+        'opacity': 1,
+        'visibility': 'visible'
+    });
+    dealerFinal += 500;
+    console.log(`${whoLost} lost`)
 }
 
 function tieGame() {
     console.log("tie")
+    $('.reset-button').css({
+        'opacity': 1
+    });
 }
 
-function restart() {
-    //will have to fade out hit and stand, fade in a button for restart, which will clear the game, fade back in buttons, and reset the score;
+function removeCards(who, where){
+    console.log("clear")
+    //how to clear
+    playerHand = []
+    dealerHand = []
 }
 
-// ACE NEEDS TO BE ABLE TO CHANGE VALUES!? BUT WHERE!?!?
-function changeAce() {
-    
+function checkRound() {
+    if (round == 5) {
+        console.log("boo!")
+        //screen overlay with final score and opion to play again
+    gameon = false;
+    }
 }
 
 function calculateTotal(hand, who) {
@@ -146,7 +245,7 @@ function calculateTotal(hand, who) {
 }
 
 function placeCard(who, where, what) {
-    // who = ? would be the plaer or the dealer
+    // who = ? would be the player or the dealer
     // where = ? option 1-6
     // what = ? 1h-14h, 1s-13s, 1d-13d, 1c-13c
     const classSelector = `.${who}-cards .card-${where}`
@@ -188,5 +287,3 @@ function shuffleDeck(aDeckToBeShuffled){
     }
     // console.log(aDeckToBeShuffled)
 }
-
-//test

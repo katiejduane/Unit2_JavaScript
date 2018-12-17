@@ -5,27 +5,32 @@ body {
     margin: 0 auto;
     color: white;
     background-color:black;
-
 }
 
 h1 {
     font-family: 'Rye', cursive;
     /* font-weight: bold; */
     font-size: 44px;
+    margin-left: -40px;
+}
 
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
 }
 
 .table {
+    flex-basis: 840px;
     background-color: #277714;
     border: 5px solid #dcdcdc;
     border-radius: 15px;
     /* padding: 50px 0px; */
-    margin: 30px auto;
-
+    /* margin: 30px auto; */
     max-width: 840px;
     min-width: 600px;
-  
-
+    min-height: 500px;
+    position: relative;
 }
 
 button {
@@ -41,17 +46,31 @@ button {
     font-family: 'Nunito', sans-serif;
     font-size: 18px;
     font-weight: bold;
+    transition: opacity 2s;
 }
+
 button:hover{
     background-color: white;
     color:rgb(216, 45, 45);
-    cursor: grab;
-    
+    cursor: grab; 
 }
 
 .buttons {
     text-align: center;
     margin-bottom: 15px;
+    position: relative;
+}
+
+.fade-out {
+    visibility: visible;
+    /* opacity: 1;
+    transition: opacity 2s linear; */
+}
+
+.fade-in {
+    /* visibility: hidden; */
+    /* opacity: 0;
+    transition: visibility 0s 2s, opacity 2s linear; */
 }
 
 .card {
@@ -96,4 +115,19 @@ button:hover{
     font-weight: bold;
     font-size: 18pt;
     margin-bottom: 10px;
+    margin-top: 10px;
 }
+
+.dealer-score{
+    font-family: 'Fugaz One', cursive;
+    margin-top: -10px;
+    text-align: center;
+
+}
+
+.player-score {
+    font-family: 'Fugaz One', cursive;
+    text-align: center;
+}
+
+ 
