@@ -1,10 +1,8 @@
 //TO-DO:
-// --clear cards! withOUT causing errors to be thrown/images to be called "undefined" and not show up in the second or third etc rounds...
 // --finalRound function to end game and give option to play again from 0
-// --get heart and diamond for score boards
-// --figure out what the hell 'classSelector' is/does...
-// --make sure no issues/confusion between player/dealerTotal and handTotal variables, esp with Ace function...
-
+// --gfix positioning issues with diamond and heart
+// --adjust color of heart/diamond, they're slightly different!
+// --adjust placement of scores on shapes so it fits!
 
 const freshDeck = createDeck();
 let theDeck = freshDeck.slice();
@@ -87,12 +85,14 @@ if (gameOn) {
 
     
     $('.reset-button').click(() => {
+        theDeck = freshDeck.slice();
         handTotal = 0;
         playerTotal = 0;
         dealerTotal = 0;
         playerHand = []
         dealerHand = []
         hasAce = false;
+        stand = false;
         $(".card").html("");
         $('.player-total').text(playerTotal)
         $('.dealer-total').text(dealerTotal)
@@ -107,30 +107,30 @@ if (gameOn) {
         round++
         document.querySelector(".message").innerHTML = `Round ${round} of 5!`
         })
+        checkRound();
     
 }
-
-checkAce(playerHand, 'player');
-checkAce(dealerHand, 'dealer');
-checkRound();
 
 // ===================== Game Functionality! ======================
 
 function checkWin() {
     let playerTotal = calculateTotal(playerHand, 'player');
     let dealerTotal = calculateTotal(dealerHand, 'dealer');
+    console.log(playerTotal, dealerTotal)
     if (playerTotal > 21 && dealerTotal < 21) {
         bust('player');
     } else if (playerTotal > 21 && dealerTotal > 21) {
         bust('dealer')
     } else if (dealerTotal > 21 && playerTotal < 21) {
         win('player')
+    } else if (playerTotal > dealerTotal && playerTotal < 21) {
+        win('player')
+    } else if (dealerTotal > playerTotal && dealerTotal < 21) {
+        lose('player')
     } else if (playerTotal == 21) {
         blackJack('player')
     } else if (dealerTotal == 21) {
         blackJack('dealer')
-    } else if (playerTotal < 21 && playerTotal > dealerTotal) {
-        win('player')
     } else if (playerTotal < dealerTotal && dealerTotal < 21) {
         lose('player')
     } else {
@@ -145,41 +145,27 @@ function checkWin() {
     // 6. if dealer > player, dealer wins
     // 7. else... push (tie)
 
-function checkAce(hand, who) {
-    let handTotal = 0; //make sure this doesn't fuck up the scoring...
-    let hasAce = false;
-    hand.forEach((card, i) => {
-        let thisCardsValue = card.slice(0, -1);
-        if (thisCardsValue > 10) {
-            thisCardsValue = 10;
-        } else if (thisCardsValue == 1) {
-            hasAce = true;
-        }
-        handTotal += Number(thisCardsValue);
-    })
-    if (handTotal > 21 && hasAce === true) {
-        handTotal -= 10;
-    }
-}
-
 function blackJack(whoJacked) {
-    $(".message").text(`${whoJacked} got Blackjack!`);
     $('.reset-button').css({
         'opacity': 1,
         'visibility': 'visible'
     });
     if (whoJacked == 'player') {
         playerFinal += 1000
+        $(".message").text(`You got Blackjack!`);
     } else {
         dealerFinal += 1000
+        $(".message").text(`The dealer got Blackjack...`);
     }
 }
 
 function bust(whoBusted){
     if (whoBusted = 'player') {
         $(".message").text(`Yikes! you busted!!`);
+        dealerFinal += 100;
     } else {
         $(".message").text(`The dealer busted! Silly computer!`)
+        playerFinal += 100;
     }
     $('.reset-button').css({
         'opacity': 1,
@@ -198,7 +184,7 @@ function win(whoWon) {
 }
 
 function lose(whoLost) {
-    document.querySelector(".message").innerHTML = `Uh oh! You lost!`
+    document.querySelector(".message").innerHTML = `Uh oh! You lost! That's a win for the computer...`
     $('.reset-button').css({
         'opacity': 1,
         'visibility': 'visible'
@@ -210,7 +196,8 @@ function lose(whoLost) {
 function tieGame() {
     console.log("tie")
     $('.reset-button').css({
-        'opacity': 1
+        'opacity': 1,
+        'visibility': 'visible'
     });
 }
 
@@ -243,13 +230,24 @@ function calculateTotal(hand, who) {
     // 1. find out the number and return it 
     // 2. update the dom with the right number for whoever's hand it is!
     let handTotal = 0;
+    let hasAce = false;
     // loop through the hand!
     hand.forEach((card, i)=>{
         //copy everything in the string, except for the last (the letter char)
         let thisCardsValue = card.slice(0, -1);
+        if (thisCardsValue > 10) {
+            thisCardsValue = 10;
+        } else if (thisCardsValue == 1) {
+            hasAce = true;
+        }
         handTotal += Number(thisCardsValue);
     })
-    console.log(handTotal + "butts")
+
+    if (hasAce && handTotal < 10){
+        handTotal += 10;
+    }
+
+    console.log(handTotal)
     const classSelector = `.${who}-total`
     $(classSelector).html(handTotal);
     return handTotal

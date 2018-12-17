@@ -117,20 +117,18 @@ button:hover{
     margin-top: 10px;
 }
 
-.dealer-score{
+.dealer-final{
     font-family: 'Fugaz One', cursive;
-    margin-top: -10px;
+    font-size: 12pt;
     text-align: center;
-    position: absolute;
-    
-
+    transform: translateY(-75px);
 }
 
-.player-score {
+.player-final {
     font-family: 'Fugaz One', cursive;
+    font-size: 12pt;
     text-align: center;
-    position: absolute;
-    display:inline
+    transform: translateY(-70px);
 }
 
 img {
@@ -139,12 +137,12 @@ img {
 
 .heart{
     width: 100px;
-    position: relative;
+    /* position: relative; */
 }
 
 .diamond {
     width: 100px;
-    position: relative;
+    /* position: relative; */
 }
 
 
