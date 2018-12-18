@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Stock Tickerrr</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" media="screen" href="stockTicker.css" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="stockTicker.js"></script>
+    
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1>Get Real-Time Stock Quotes!</h1>
+                <form class="stock-form">
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="symbol" />
+                        <button type="submit" class="btn btn-dark">Get me some stock quotes!</button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-12">
+                <table id="stock-table" class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Stock Symbol</th>
+                            <th>Company Name</th>
+                            <th>High</th>
+                            <th>Low</th>
+                            <th>Daily Change</th>
+                        </tr>
+                    </thead>
+                    <tbody id="stock-body">
+                        <tr>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>-</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
