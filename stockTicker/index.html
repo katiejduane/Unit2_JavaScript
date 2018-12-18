@@ -7,9 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
         crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css"/>
     <link rel="stylesheet" type="text/css" media="screen" href="stockTicker.css" />
     <link href="https://fonts.googleapis.com/css?family=Roboto+Slab" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
     <script src="stockTicker.js"></script>
     
 </head>
@@ -20,7 +22,7 @@
                 <h1>Get Real-Time Stock Quotes!</h1>
                 <form class="stock-form">
                     <div class="input-group">
-                        <input type="text" class="form-control" id="symbol" />
+                        <input type="text" class="form-control" id="symbol" placeholder="Enter the stock symbol to search, separate multiple with a comma"/>
                         <button type="submit" class="btn btn-dark">Get me some stock quotes!</button>
                     </div>
                 </form>
@@ -38,11 +40,6 @@
                     </thead>
                     <tbody id="stock-body">
                         <tr>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
-                            <td>-</td>
                         </tr>
                     </tbody>
                 </table>

@@ -7,6 +7,11 @@ body {
     margin-top: 20px;
 }
 
-.btn {
-  
+.pos {
+    background-color: green;
 }
+
+.neg {
+    background-color: red;
+}
+

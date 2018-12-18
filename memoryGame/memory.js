@@ -2,7 +2,9 @@
 // make it a space memory game; vesta, other solar system object, extra-solar system objects
 // this could actually be a cool game that includes images that relate to your interests or something!
 // you could re-do it with or without bootstrap, could be a good opp to learn it!
-// winning page gives info on all the objects!?
+// after you win: a dive or overlay should open, with a click listener to load a grid 
+// (using bootstrap pr jQuery plugin for slider) of the images with facts about them, name, type, location...
+// add data from an API about where these objects are RIGHT NOW
 
 
 
