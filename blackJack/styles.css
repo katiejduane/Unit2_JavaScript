@@ -119,31 +119,55 @@ button:hover{
 
 .dealer-final{
     font-family: 'Fugaz One', cursive;
-    font-size: 12pt;
+    font-size: 10pt;
     text-align: center;
-    transform: translateY(-75px);
+    transform: translateY(-100px);
+    margin-top: -10px;
 }
 
 .player-final {
     font-family: 'Fugaz One', cursive;
-    font-size: 12pt;
+    font-size: 10pt;
     text-align: center;
-    transform: translateY(-70px);
+    transform: translateY(-100px);
+    margin-top: -10px;
 }
 
 img {
     width: 100px;
 }
 
-.heart{
+.heart div{
     width: 100px;
+    height: 100px;
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
     /* position: relative; */
 }
 
-.diamond {
+.diamond div{
     width: 100px;
+    height: 100px;
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
     /* position: relative; */
 }
 
-
- 
+.overlay {
+  position: fixed; /* Sit on top of the page content */
+  display: none; Hidden by default
+  width: 100%; /* Full width (cover the whole page) */
+  height: 100%; /* Full height (cover the whole page) */
+  top: 0; 
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 1, 1, 0.625); /* Black background with opacity */
+  z-index: 1; /* Specify a stack order in case you're using a different order for other elements */
+  cursor: pointer; /* Add a pointer on hover */
+  text-align: center;
+}

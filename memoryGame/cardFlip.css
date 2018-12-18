@@ -1,0 +1,72 @@
+img {
+    width: 300px;
+    height: 450px;
+}
+
+/* card is the grandparent, and its the cube. it's a 3d playground for the kids/grandkids to play inside of */
+.card {
+    width: 300px;
+    height: 450px;
+    perspective: 2000px;
+    border: 2px solid cornflowerblue;
+}
+
+/* a child of parent, and able to play in 3d of parent */
+.card-holder {
+    width: 300px;
+    transition: all 2s;
+    /* the children of card-holder will have aboslute positioning so give this parent a position */
+    position: relative;
+    /* tell all child elements they're in 3D land, when you transform, do so like a good 3D child */
+    transform-style: preserve-3d;
+    /* transform origin moves the point of origin from the typical center where it is automatically */
+    transform-origin: 20% 40%;
+}
+
+.card-front {
+    transform: rotateY(180deg);
+}
+
+.card-front, .card-back{
+    /* we gave card holder a position of relative, so left 0 will be the left side of the card holder */
+    position: absolute;
+    top: 0;
+    left: 0;
+    backface-visibility: hidden;
+}
+
+/* Make the parent div obvious! */
+
+#parent {
+    height: 200px;
+    width: 200px;
+    margin: 50px;
+    padding: 10px;
+    background-color: #4f5f6c;
+    perspective: 100px;
+}
+
+#parent div {
+    padding: 50px;
+    border: 1px solid cornflowerblue;
+}
+
+#threeD {
+    background-color: orangered;
+    transform: rotateX(45deg);
+}
+
+#threeD2 {
+    background-color: goldenrod;
+    transform: rotateY(45deg);
+}
+
+#threeD3 {
+    background-color: aqua;
+    transform: rotateZ(45deg);
+}
+
+.flip {
+    transform: rotateY(180deg);
+    /* transition:  */
+}

@@ -1,0 +1,95 @@
+body {
+    background-color: black
+}
+
+h1 {
+	color: gainsboro;
+	font-family: 'Iceland', cursive;
+}
+
+h2 {
+	color: rgb(145, 216, 82);
+	font-size: 18pt;
+	font-family: 'Iceland', cursive;
+}
+
+.container {
+    margin-top: 20px;
+}
+
+button {
+	font-family: 'B612 Mono', monospace;
+	margin: 10px;
+}
+
+.buttons {
+	margin-top: 30px;
+}
+
+img{
+	/* Keep the image inside of the parent no matter what */
+	max-width: 100%;
+	border-radius: 10px;
+	/* border-radius: 10px; */
+}
+
+/* Card is teh garandparent and needs perspective. */
+/* This doesn't make card 3d, it makes it 3d for everyone else. */
+.card{
+	perspective: 800px;
+	/* border: 2px solid black; */
+    height: 300px;
+	/* background-color: white; */
+	padding: 10px;
+
+	
+}
+
+/* Card-holder is the child, it is teh thing that will flip */
+/* I have 2 children, front and back, they do not flip... I do */
+.card-holder{
+	position: relative;
+	transform-style: preserve-3d; /* the grandchildren need to know they are 3d */	
+	transition: 1s all;
+    cursor: pointer;
+	height: 100%;
+}
+
+.card-front, .card-back{
+	position: absolute;
+	top: 0;
+	left: 0;
+    backface-visibility: hidden;
+	height: 100%;
+	width: 100%;
+	border-radius: 10px;
+}
+
+.card-front{
+	transform: rotateY(180deg);
+	border-radius: 10px;
+}
+
+.card.front:hover{
+	/* reveal object name somehow? */
+}
+
+.card-back{
+	/* we are inside of css, go up one with ../ then down into images to get bw */
+	background: url('./images/sts-27-sm.png') no-repeat 50% 50%;	
+	width: 100%;
+}
+
+.card-back img{
+	width: 300px;
+}
+
+.flip{
+	transform: rotateY(-180deg);
+}
+
+.matched {
+    transform: rotateY(900deg);
+}
+
+/* font-family: 'B612 Mono', monospace; */

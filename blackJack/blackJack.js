@@ -1,8 +1,8 @@
 //TO-DO:
 // --finalRound function to end game and give option to play again from 0
-// --gfix positioning issues with diamond and heart
-// --adjust color of heart/diamond, they're slightly different!
-// --adjust placement of scores on shapes so it fits!
+// --Ace function isn't working
+// --add player/deal to score #s on top and bottom on board
+// --make sure that "hit" is turned off unless deal has been pressed
 
 const freshDeck = createDeck();
 let theDeck = freshDeck.slice();
@@ -106,8 +106,8 @@ if (gameOn) {
         $('.dealer-final').text(`Dealer: ${dealerFinal}`)
         round++
         document.querySelector(".message").innerHTML = `Round ${round} of 5!`
-        })
         checkRound();
+        })
     
 }
 
@@ -201,20 +201,15 @@ function tieGame() {
     });
 }
 
-// function removeCards(who, where){
-//     console.log("clear")
-//     //how to clear
-//     playerHand = []
-//     dealerHand = []
-// }
-
 function checkRound() {
     if (round == 5) {
        endGame()
+       console.log("round check")
     }
 }
 
 function endGame(){
+    console.log("end")
     //CSS overlay with winning person's name and final score!
     if (playerFinal > dealerFinal){
         //player wins

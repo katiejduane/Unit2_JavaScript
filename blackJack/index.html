@@ -21,11 +21,13 @@
 5. create an element for the dealers total6. create an element for each card (max 6)
 7. make a deal, hit, and stand button -->
 <div class="container">
-    <div class="heart"><img src="heart.png">
-    <div class="player-final"> You: 0</div>
+    <div class="heart">
+        <img src="heart.png">
+        <div class="player-final score">You: 0</div>
     </div>
     <div class="table">
-        <div class="player-total">0</div>
+        <div class="overlay">WIN!</div>
+        <div class="player-total">You: 0</div>
         <div class="player-cards">
             <div class="card card-1"></div>
             <div class="card card-2"></div>
@@ -34,7 +36,7 @@
             <div class="card card-5"></div>
             <div class="card card-6"></div>
         </div>
-        <div class="dealer-total">0</div>
+        <div class="dealer-total">Dealer: 0</div>
         <div class="dealer-cards">
             <div class="card card-1"></div>
             <div class="card card-2"></div>
@@ -50,8 +52,9 @@
             <button class="reset-button fade-in">Again!</button>
         </div>
     </div>
-    <div class="diamond"><img src="diamond.png">
-    <div class="dealer-final">Dealer: 0</div>
+    <div class="heart">
+        <img src="heart.png">
+        <div class="dealer-final score">Dealer: 0</div>
     </div>
 </div>
 <div class = "message"><p>Who shall win? You or a computer dealer!?</p></div>

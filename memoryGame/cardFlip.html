@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Card Flipz</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="cardFlip.css" />
+    <!-- <script src="main.js"></script> -->
+</head>
+<body>
+    <h1>Card flipping in CSS!</h1>
+
+    <!-- a 3d cube! -->
+    <div class ="card">
+        <!-- a thing to flip -->
+        <div class="card-holder">
+            <!-- picture facedown inside of holder -->
+            <div class="card-front">
+            <img src="https://s2.r29static.com//bin/entry/d0f/720x864,80/2091573/image.jpg">
+                </div>
+            <!-- a picture face up inside of holder -->
+            <div class="card-back">
+            <img src="https://cdn5.vectorstock.com/i/1000x1000/16/49/surreal-landscape-with-umbrella-and-rain-vertical-vector-20651649.jpg">
+                </div>
+        </div>
+    </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    $('.card-holder').click(function() {
+        $(this).toggleClass('flip')
+    })
+</script>
+
+    <!-- <label>Change Perspective</label>
+    <div id="parent">
+        <div id="threeD">
+            I hope the sun shines all day today!
+        </div>
+        <div id="threeD2">
+            I hope the sun shines all day tomorrow!
+        </div>
+        <div id="threeD3">
+            I hope the sun shines all day the next day!
+        </div>
+    </div> -->
+</body>
+</html>
