@@ -1,10 +1,11 @@
 body {
-    background-color: black
+	background-color: black;
 }
 
 h1 {
 	color: gainsboro;
 	font-family: 'Iceland', cursive;
+	
 }
 
 h2 {
@@ -14,7 +15,8 @@ h2 {
 }
 
 .container {
-    margin-top: 20px;
+	margin-top: 20px;
+	text-align: center;
 }
 
 button {
@@ -40,9 +42,7 @@ img{
 	/* border: 2px solid black; */
     height: 300px;
 	/* background-color: white; */
-	padding: 10px;
-
-	
+	padding: 10px;	
 }
 
 /* Card-holder is the child, it is teh thing that will flip */
@@ -53,6 +53,7 @@ img{
 	transition: 1s all;
     cursor: pointer;
 	height: 100%;
+
 }
 
 .card-front, .card-back{
@@ -68,10 +69,6 @@ img{
 .card-front{
 	transform: rotateY(180deg);
 	border-radius: 10px;
-}
-
-.card.front:hover{
-	/* reveal object name somehow? */
 }
 
 .card-back{
@@ -93,3 +90,36 @@ img{
 }
 
 /* font-family: 'B612 Mono', monospace; */
+
+.card-back.planet-info{
+	background: transparent;
+	color: white;
+	font-family: 'B612 Mono', monospace;
+	font-size: 13pt;
+	text-align: center;
+	margin-top: 10px;
+}
+
+h3 {
+	font-size: 18pt;
+	font-family: 'Iceland', cursive;
+	color: rgb(145, 216, 82);
+
+}
+
+.visible {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 2s linear;
+}
+
+.hidden {
+  /* visibility: hidden; */
+  opacity: 0;
+  transition: all 0s 2s, opacity 2s linear;
+}
+
+
+buttons.again {
+
+}
