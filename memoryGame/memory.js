@@ -69,9 +69,12 @@ $(document).ready(() => {
                     cardsUp.addClass('matched');
                     matches++
                     if (matches == gridSize / 2) {
-                        setTimeout(() => {
-                        gameOver();
-                    }, 2000)};
+                        setTimeout(function(){
+                            cardsUp.addClass('hidden')
+                        }, 3000);
+                        setTimeout((gameOver),3000);
+                    };
+
                 } else {
                     //these are not a match because the html is different
                     //JS is too dang fast, we have to let the use see the card before we flip it back
@@ -94,9 +97,9 @@ function shuffleDeck(deck, gridSize) {
         let rand2 = Math.floor(Math.random() * gridSize);
         // we need to swutch aDeckToBeShuffled[rand1] with aDeckToBeShuffled[rand2]
         // BUT we have to save the value of one of them so we can keep it for later
-        let tempCard = deck[rand1];
+        let topCard = deck[rand1];
         deck[rand1] = deck[rand2];
-        deck[rand2] = tempCard;
+        deck[rand2] = topCard;
     }
     // console.log(aDeckToBeShuffled)
     return deck
@@ -174,8 +177,8 @@ $(window).resize(function () {
 
 function gameOver() {
     console.log("function check")
-    $('.container').removeClass('hidden');
-    $('.container').addClass('visible');
+    // $('.container').removeClass('hidden');
+    // $('.container').addClass('visible');
     matches = 0;
     let memoryHTML = ""
     let cards = [];
@@ -202,7 +205,7 @@ function gameOver() {
                 <button diff=12 class="btn btn-lg btn-warning">Moderate</button>
                 <button diff=24 class="btn btn-lg btn-danger">Strenuous</button>
             </div>`
-    $('.container').addClass('visible');
+    // $('.container').addClass('visible');
     
 // how do i add the click functon ^^here? It needs to be a named function that I can just call over and over I think...
 
