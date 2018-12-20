@@ -70,9 +70,9 @@ $(document).ready(() => {
                     matches++
                     if (matches == gridSize / 2) {
                         setTimeout(function(){
-                            cardsUp.addClass('hidden')
+                            $('.card-holder').addClass('hidden')
                         }, 3000);
-                        setTimeout((gameOver),3000);
+                        setTimeout((gameOver),5000);
                     };
 
                 } else {
@@ -177,8 +177,7 @@ $(window).resize(function () {
 
 function gameOver() {
     console.log("function check")
-    // $('.container').removeClass('hidden');
-    // $('.container').addClass('visible');
+    $('.card-holder').removeClass('hidden');
     matches = 0;
     let memoryHTML = ""
     let cards = [];
