@@ -23,5 +23,35 @@ $('#weather-form').submit((e) => {
         <div>The temp in ${weatherData.name} is currently ${temps.curr} &deg;
         `
         $('.weather-data').html(newHTML);
+        animateTemp(0, currTemp);
     });
 });
+
+const canvas = document.querySelector('#weather-canvas');
+let context = canvas.getContext('2d');
+let currentPercent = 0;
+
+function animateTemp(currentArc, currentTemp) {
+    context.lineWidth = 5;
+    context.strokeColor = "ffff00";
+    context.beginPath();
+    context.fillStyle = "#ccc"
+    context.arc(155, 75, 70, 0, Math.PI*2)
+    context.closePath();
+    context.fill();
+
+    //Outer Line:
+    context.beginPath();
+    context.arc(155,75, 75, Math.PI*1.5, Math.PI * 2 * currentArc + Math.PI * 1.5)
+    context.stroke();
+    currentPercent++;
+
+    //update the arc percentage until we hit currTemp
+    if(currentPercent < currentTemp){
+        //we need to keep drawing
+        // requestAnimationFrame is like a while loop for canvas. it takes a function!
+        requestAnimationFrame(()=>{
+            animateTemp(currentPercent/100, currentTemp)
+        })
+    }
+}
