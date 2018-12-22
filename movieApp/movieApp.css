@@ -1,0 +1,16 @@
+body {
+    background-color: rgb(50, 30, 30);
+    color: blanchedalmond;
+}
+
+.container {
+    margin: 20px auto;
+}
+
+#search-input {
+    width: 300px;
+}
+
+#movie-grid {
+    margin: 20px;
+}
