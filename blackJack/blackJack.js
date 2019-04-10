@@ -1,5 +1,7 @@
 //TO-DO:
-// --finalRound function to end game and give option to play again from 0
+// --finalRound function to end game and give option to play again from 0,
+// player can play past 5 rounds!
+// the "you" and "dealer" disappeared from score board on green
 // --Ace function isn't working
 // --add player/deal to score #s on top and bottom on board
 // --make sure that "hit" is turned off unless deal has been pressed

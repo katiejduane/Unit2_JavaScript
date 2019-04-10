@@ -1,0 +1,28 @@
+<!-- Scope: Determines what can see a variable.
+
+--GLOBAL Scope: has no parent, anyone can see it anywhere, and anyone can change it anywhere. Awesome for small programs.
+---Dangerous when your program gets big. If it belongs to the window, or is defined outside of all functions, it's global.
+---In Python, globals are variables that are alllll the way to the left.
+
+--LOCAL Scope: live INSIDE of FUNCTIONS and are visible and changeable only within and to that function and its child functions. -->
+
+
+<script>
+    // this isn't inside of a function, so it's global:
+    var iAmAGlobal = 1;
+    console.log(iAmAGlobal);
+
+    // despite its horrible name, this variable isn't global, because it's inside of a function. 
+    // Nobody outside of this function can see or do anything with this variable!
+    function checkScope(){
+        // var iAmAGlobal = 2;
+        iAmAGlobal++;
+        console.log(iAmAGlobal);
+    }
+
+    checkScope();
+    console.log(iAmAGlobal);
+
+
+
+</script>

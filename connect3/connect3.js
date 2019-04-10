@@ -3,7 +3,7 @@
 
 // Function to create game board! //
 
-let gridSize = 6;
+let gridSize = 4;
 
 // function to create board and player arrays based on grid size!
 function makeArray(gridSize) {

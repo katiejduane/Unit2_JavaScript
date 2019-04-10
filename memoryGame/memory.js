@@ -1,9 +1,10 @@
 //TO-DO List for this game:
 // fade out gameboard with css, fade in the final grid; right now it's still abrupt!
+// ^^use keyframes code from Pithos that you used for the modals to do this^^!
+// fix shuffle functioning for easy/moderate (only pulling from first 2 or 6)
 // problem with the h3 after gameplay being the height of th whole container, and a seeming child // fix spacing, it gets overlapped by the crads as they spin
 // how to add button functionality to the buttons that appear on the info screen (name the original function?, but how to recall?)
-// add data from an API about where these objects are RIGHT NOW
-// fix shuffle functioning for easy/moderate (only pulling from first 2 or 6)
+// add a timer so the player knows how long it took them!
 
 
 
